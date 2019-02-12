@@ -5,13 +5,13 @@ import {BrowserRouter as Router, Route } from 'react-router-dom'
 import Valet from './Valet'
 
 
-class HelloWorld extends React.Component {
+class User extends React.Component {
   render () {
     return (
       <Router>
        <div>
-          <h1> Hi World</h1>
-         <Route path="/valet" component={Valet}/>
+          <h1> User Page</h1>
+
        </div>
      </Router>
 
@@ -21,4 +21,4 @@ class HelloWorld extends React.Component {
   }
 }
 
-export default HelloWorld
+export default User

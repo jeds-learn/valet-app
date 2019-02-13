@@ -7,7 +7,7 @@ import {Icon, Button, Col, Row, Input} from 'react-materialize'
 class RegistrationValet extends React.Component {
     state ={
       valetAttributes:{
-      isValet: true,
+      is_valet: true,
       company_name: null,
       address: null,
       city: null,

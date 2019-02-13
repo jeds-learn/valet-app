@@ -7,7 +7,7 @@ import {Icon, Button, Col, Row, Input} from 'react-materialize'
 class RegistrationUser extends React.Component {
     state ={
       customerAttributes:{
-      isValet: false,
+      is_valet: false,
       first_name: null,
       last_name: null,
       phone: null,

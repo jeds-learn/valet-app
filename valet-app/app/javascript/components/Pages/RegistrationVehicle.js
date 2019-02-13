@@ -12,6 +12,12 @@ class RegistrationUser extends React.Component {
       last_name: null,
       phone: null,
       email: null,
+    },
+    vehicleAttributes:{
+      license_plate: null,
+      make: null,
+      model: null,
+      color: null,
     }
   }
 
@@ -20,17 +26,15 @@ handleChangeCustomer = (event) => {
   customerAttributes[event.target.name] = event.target.value
   this.setState({ customerAttributes:customerAttributes })
 }
+handleChangeVehicle = (event) => {
+  const { vehicleAttributes } = this.state
+  vehicleAttributes[event.target.name] = event.target.value
+  this.setState({ vehicleAttributes:vehicleAttributes })
+}
 
 submitCustomerToDb = (event) => {
   event.preventDefault()
-  fetch('/users/sign_up.json', {
-    method:"POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(this.state.apartmentAttributes)
-  })
-  .then((response)=>{
-    this.setState({responseOk:true})
-  })
+  console.log("I need to send to DB");
 }
 
   render () {
@@ -44,6 +48,10 @@ submitCustomerToDb = (event) => {
               <Input s={6} onChange={this.handleChangeCustomer} name="last_name" label="Last Name" />
               <Input s={6} onChange={this.handleChangeCustomer} name="email" label="Email" />
               <Input s={6} onChange={this.handleChangeCustomer} name="phone" placeholder="+1" label="Cell Number" />
+              <Input s={6} onChange={this.handleChangeVehicle} name="license_plate" label="License Plate" />
+              <Input s={6} onChange={this.handleChangeVehicle} name="make" label="Make" />
+              <Input s={6} onChange={this.handleChangeVehicle} name="model" label="Model" />
+              <Input s={6} onChange={this.handleChangeVehicle} name="color" label="Color" />
               <Button s={12}><Icon left>directions_car</Icon>Register</Button>
             </form>
           </Row>

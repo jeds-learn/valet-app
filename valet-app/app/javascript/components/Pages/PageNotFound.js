@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import {BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import {Input} from 'react-materialize'
 
 

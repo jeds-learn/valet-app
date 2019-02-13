@@ -1,23 +1,27 @@
 import React from "react"
 import PropTypes from "prop-types"
-import {BrowserRouter as Router, Route } from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import NavigationBar from './Elements/NavigationBar'
+import Home from './Pages/Home'
+import PageNotFound from './Pages/PageNotFound'
 
 
 class User extends React.Component {
   render () {
     return (
-      <Router>
-
-       <div>
+      <div>
         <NavigationBar/>
-          <h1> User Page</h1>
-
+        <h6> User Page</h6>
+          <Router>
+            <Switch>
+              <Route path="/" exact component={Home}/>
+              <Route component={PageNotFound}/>
+            </Switch>
+          </Router>
        </div>
-     </Router>
 
-    );
+    )
   }
 }
 

@@ -7,19 +7,24 @@ import Registration from './Pages/Registration'
 import PageNotFound from './Pages/PageNotFound'
 import RegistrationUser from './Pages/RegistrationUser'
 import RegistrationValet from './Pages/RegistrationValet'
+import Home from './Pages/Home'
 
 class Public extends React.Component {
   render () {
     return (
+      <div>
+      <NavigationBar/>
+      <h6> Public Path</h6>
       <Router>
-       <div>
-        <NavigationBar/>
-          <h6> Public Path</h6>
-             <Route path="/registration" exact component={Registration}/>
-             <Route path="/registration/user" exact component={RegistrationUser}/>
-             <Route path="/registration/valet" exact component={RegistrationValet}/>
-       </div>
+        <Switch>
+          <Route path="/" exact component={Home}/>
+          <Route path="/registration" exact component={Registration}/>
+          <Route path="/registration/user" exact component={RegistrationUser}/>
+          <Route path="/registration/valet" exact component={RegistrationValet}/>
+          <Route component={PageNotFound}/>
+       </Switch>
      </Router>
+     </div>
 
 
 

@@ -9,10 +9,15 @@ class RegistrationValet extends React.Component {
       valetAttributes:{
       isValet: true,
       company_name: null,
-      first_name: null,
-      last_name: null,
-      phone: null,
+      address: null,
+      city: null,
+      state: null,
+      zip: null,
       email: null,
+      phone: null,
+      opening_time: null,
+      closing_time: null,
+      cost_per_hour: null,
     }
   }
 
@@ -35,11 +40,15 @@ submitCustomerToDb = (event) => {
           <Row>
             <form onSubmit={this.submitCustomerToDb}>
               <Input s={12} onChange={this.handleChange} name="company_name" label="Company Name" />
+              <Input s={12} onChange={this.handleChange} name="address" label="Address" />
+              <Input s={4} onChange={this.handleChange} name="city" label="City" />
+              <Input s={4} onChange={this.handleChange} name="state" label="State" />
+              <Input s={4} onChange={this.handleChange} name="zip" label="Zip Code" />
               <Input s={6} onChange={this.handleChange} name="email" label="Email" />
               <Input s={6} onChange={this.handleChange} name="phone" placeholder="+1" label="Phone Number" />
               <Input s={4} onChange={this.handleChange} name="opening_time" label="Opening Time" />
               <Input s={4} onChange={this.handleChange} name="closing_time" label="Closing Time" />
-              <Input s={4} onChange={this.handleChange} value="$" name="cost" label="Cost Per Hour" />
+              <Input s={4} onChange={this.handleChange} value="$" name="cost_per_hour" label="Cost Per Hour" />
               <Button s={12}><Icon left>send</Icon>Register</Button>
             </form>
           </Row>

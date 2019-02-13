@@ -47,8 +47,8 @@ submitCustomerToDb = (event) => {
               <Input s={6} onChange={this.handleChangeCustomer} name="last_name" label="Last Name" />
               <Input s={6} onChange={this.handleChangeCustomer} name="email" label="Email" />
               <Input s={6} onChange={this.handleChangeCustomer} name="phone" label="Cell Number" />
-              <Input s={6} onChange={this.handleChangeCustomer} name="password" label="Password" />
-              <Input s={6} onChange={this.handleChangeCustomer} name="password_confirmation" label="Reconfirm Password" />
+              <Input s={6} onChange={this.handleChangeCustomer} name="password" label="Password" type="password"/>
+              <Input s={6} onChange={this.handleChangeCustomer} name="password_confirmation" label="Reconfirm Password" type="password"/>
               <Button s={12}><Icon left>directions_car</Icon>Register</Button>
             </form>
           </Row>

@@ -28,7 +28,7 @@ skip_before_action :verify_authenticity_token
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :phone, :email, :is_valet, :password, :password_confirmation)
+      params.require(:user).permit(:company_name, :address, :city, :state, :zip, :opening_time, :closing_time, :cost_per_hour, :first_name, :last_name, :phone, :email, :is_valet, :password, :password_confirmation)
     end
 
 

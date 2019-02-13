@@ -23,10 +23,10 @@ handleChangeCustomer = (event) => {
 
 submitCustomerToDb = (event) => {
   event.preventDefault()
-  fetch('/users/sign_up.json', {
+  fetch('/users/create.json', {
     method:"POST",
     headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(this.state.apartmentAttributes)
+    body: JSON.stringify(this.state.customerAttributes)
   })
   .then((response)=>{
     this.setState({responseOk:true})
@@ -43,7 +43,9 @@ submitCustomerToDb = (event) => {
               <Input s={6} onChange={this.handleChangeCustomer} name="first_name" label="First Name" />
               <Input s={6} onChange={this.handleChangeCustomer} name="last_name" label="Last Name" />
               <Input s={6} onChange={this.handleChangeCustomer} name="email" label="Email" />
-              <Input s={6} onChange={this.handleChangeCustomer} name="phone" placeholder="+1" label="Cell Number" />
+              <Input s={6} onChange={this.handleChangeCustomer} name="phone" label="Cell Number" />
+              <Input s={6} onChange={this.handleChangeCustomer} name="password" label="Password" />
+              <Input s={6} onChange={this.handleChangeCustomer} name="password_confirmation" label="Reconfirm Password" />
               <Button s={12}><Icon left>directions_car</Icon>Register</Button>
             </form>
           </Row>

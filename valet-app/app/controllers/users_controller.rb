@@ -10,7 +10,7 @@ skip_before_action :verify_authenticity_token
     respond_to do |format|
       if @user.save
         format.html { redirect_to "http://www.rubyonrails.org", notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        format.json { render json: @user, status: :created}
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -20,6 +20,7 @@ skip_before_action :verify_authenticity_token
 
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @user = User.find(params[:id])
@@ -27,6 +28,8 @@ skip_before_action :verify_authenticity_token
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :phone, :email, :is_valet)
+      params.require(:user).permit(:first_name, :last_name, :phone, :email, :is_valet, :password, :password_confirmation)
     end
+
+
 end

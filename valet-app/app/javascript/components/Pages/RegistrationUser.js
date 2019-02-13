@@ -12,6 +12,9 @@ class RegistrationUser extends React.Component {
       last_name: null,
       phone: null,
       email: null,
+      password: null,
+      password_confirmation: null,
+
     }
   }
 
@@ -26,7 +29,7 @@ submitCustomerToDb = (event) => {
   fetch('/users/create.json', {
     method:"POST",
     headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(this.state.customerAttributes)
+    body: JSON.stringify({user:this.state.customerAttributes})
   })
   .then((response)=>{
     this.setState({responseOk:true})

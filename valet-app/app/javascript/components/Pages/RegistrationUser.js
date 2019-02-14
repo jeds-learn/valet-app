@@ -39,7 +39,7 @@ submitCustomerToDb = (event) => {
   render () {
     console.log("state",this.state);
     return (
-      <div>
+      <div className="container">
         <div id="customer-form">
           <Row>
             <form onSubmit={this.submitCustomerToDb}>

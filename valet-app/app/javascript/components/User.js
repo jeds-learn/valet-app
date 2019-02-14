@@ -12,7 +12,6 @@ class User extends React.Component {
     return (
       <div>
         <NavigationBar userDetails={this.props}/>
-        <h6> User Page</h6>
           <Router>
             <Switch>
               <Route path="/" exact component={Home}/>

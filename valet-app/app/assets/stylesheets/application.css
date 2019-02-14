@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+ .register-btn{
+   margin-right: 5px;
+
+ }

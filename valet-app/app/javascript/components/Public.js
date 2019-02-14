@@ -14,7 +14,6 @@ class Public extends React.Component {
     return (
       <div>
       <NavigationBar userDetails={this.props}/>
-      <h6> Public Path</h6>
       <Router>
         <Switch>
           <Route path="/" exact component={Home}/>

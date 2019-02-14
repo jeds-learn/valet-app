@@ -44,7 +44,7 @@ submitValetToDb = (event) => {
   render () {
     console.log("state",this.state);
     return (
-      <div>
+      <div className="container">
         <div id="valet-form">
           <Row>
             <form onSubmit={this.submitValetToDb}>

@@ -1,20 +1,18 @@
 import React from "react"
 import PropTypes from "prop-types"
 import {Icon, Button, Col, Row} from 'react-materialize'
-import {BrowserRouter as Router, Link, Redirect } from 'react-router-dom'
-
-import RegistrationUser from '../Pages/RegistrationUser'
-import RegistrationValet from '../Pages/RegistrationValet'
-
+import {Link} from 'react-router-dom'
 
 class Registration extends React.Component {
   render () {
     return (
-        <div>
-          <p>Would you like to register as a:</p>
-          <Link className="btn" to={'/registration/user'} component={RegistrationUser}>Customer</Link>
-          <Link className="btn" to={'/registration/valet'} component={RegistrationValet}>Valet</Link>
+        <div className="container">
+
+          <p className="flow-text">Register as a...</p>
+          <Link className="waves-effect waves-light btn register-btn" to={'/registration/user'}><i className="material-icons left">directions_car</i>Customer</Link>
+          <Link className="waves-effect waves-light btn register-btn" to={'/registration/valet'}><i className="material-icons left">location_city</i>Valet</Link>
         </div>
+
     )
   }
 }

@@ -1,6 +1,6 @@
 
 <% if user_signed_in? %>
-<%= react_component('User', props: {'logged_in': true, 'user_id': current_user.id, 'is_valet': current_user.is_valet})%>
+<%= react_component('User', props: {'logged_in': true, 'user_id': current_user.id, 'is_valet': current_user.is_valet, 'first_name':          current_user.first_name,'company_name': current_user.company_name})%>
 <% else %>
 <%= react_component('Public', props: {'logged_in': false}) %>
 <% end %>

@@ -43,9 +43,9 @@ calculateDuration = () =>{
       <div className="container">
         <h1>Home</h1>
             <div>
-              <DateTime defaultValue={"Drop Off Time"} onChange={this.getStartTime} name="start-date" />
+              <DateTime defaultValue={"Drop Off Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getStartTime} name="start-date" />
               <br/>
-              <DateTime defaultValue={"Collection Time"} onChange={this.getEndTime} name="end-date"/>
+              <DateTime defaultValue={"Collection Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getEndTime} name="end-date"/>
               {this.calculateDuration()}
             </div>
       </div>

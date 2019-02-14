@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
 import {Row, Table, Button, Input} from 'react-materialize'
-
+import BookDetails from './BookNow.js'
 
 
 class BookNow extends React.Component {
@@ -10,11 +10,9 @@ class BookNow extends React.Component {
   render () {
     return (
       <div>
-
         <Row className = 'right'>
           <Input s={20} label="Search Available Valets" validate defaultValue=' ' />
         </Row>
-
         <Table>
           <thead>
             <tr>
@@ -24,7 +22,6 @@ class BookNow extends React.Component {
               <th data-field="name">Select</th>
             </tr>
           </thead>
-
           <tbody>
             <tr>
               <td>Name 1</td>
@@ -47,9 +44,8 @@ class BookNow extends React.Component {
           </tbody>
         </Table>
         <div className = 'right'>
-          <Button waves='light'>Next</Button>
+          <a href= "./Pages/BookDetails"><Button waves='light'>Next</Button></a>
         </div>
-
       </div>
     )
   }

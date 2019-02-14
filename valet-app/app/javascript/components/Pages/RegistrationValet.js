@@ -18,6 +18,8 @@ class RegistrationValet extends React.Component {
       opening_time: null,
       closing_time: null,
       cost_per_hour: null,
+      password: null,
+      password_confirmation: null,
     }
   }
 
@@ -27,18 +29,25 @@ handleChange = (event) => {
   this.setState({ valetAttributes:valetAttributes })
 }
 
-submitCustomerToDb = (event) => {
+submitValetToDb = (event) => {
   event.preventDefault()
-  console.log("I need to send to DB");
+  fetch('/users/create.json', {
+    method:"POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({user:this.state.valetAttributes})
+  })
+  .then((response)=>{
+    this.setState({responseOk:true})
+  })
 }
 
   render () {
     console.log("state",this.state);
     return (
-      <div>
+      <div className="container">
         <div id="valet-form">
           <Row>
-            <form onSubmit={this.submitCustomerToDb}>
+            <form onSubmit={this.submitValetToDb}>
               <Input s={12} onChange={this.handleChange} name="company_name" label="Company Name" />
               <Input s={12} onChange={this.handleChange} name="address" label="Address" />
               <Input s={4} onChange={this.handleChange} name="city" label="City" />
@@ -48,7 +57,9 @@ submitCustomerToDb = (event) => {
               <Input s={6} onChange={this.handleChange} name="phone" placeholder="+1" label="Phone Number" />
               <Input s={4} onChange={this.handleChange} name="opening_time" label="Opening Time" />
               <Input s={4} onChange={this.handleChange} name="closing_time" label="Closing Time" />
-              <Input s={4} onChange={this.handleChange} value="$" name="cost_per_hour" label="Cost Per Hour" />
+              <Input s={4} onChange={this.handleChange} placeholder="$" name="cost_per_hour" label="Cost Per Hour" />
+              <Input s={6} onChange={this.handleChange} name="password" label="Password" type="password"/>
+              <Input s={6} onChange={this.handleChange} name="password_confirmation" label="Reconfirm Password" type="password"/>
               <Button s={12}><Icon left>send</Icon>Register</Button>
             </form>
           </Row>

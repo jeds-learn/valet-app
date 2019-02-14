@@ -7,6 +7,7 @@ import Home from './Pages/Home'
 import PageNotFound from './Pages/PageNotFound'
 import BookNow from './Pages/BookNow'
 import BookDetails from './Pages/BookDetails'
+import AddVehicle from './Pages/AddVehicle'
 
 
 class User extends React.Component {
@@ -17,13 +18,13 @@ class User extends React.Component {
           <Router>
             <Switch>
               <Route path="/" exact component={Home}/>
-              <Route path="/book_valet" exact component={BookNow}/>
-              <Route path="/book_valet/details" exact component={BookDetails}/>
+              <Route path="/user/add_vehicle" exact component={AddVehicle}/>
+              <Route path="/user/book_valet" exact component={BookNow}/>
+              <Route path="/user/book_valet/details" exact component={BookDetails}/>
               <Route component={PageNotFound}/>
             </Switch>
           </Router>
        </div>
-
     )
   }
 }

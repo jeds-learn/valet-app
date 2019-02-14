@@ -5,18 +5,15 @@ import {Icon, Button, Col, Row, Input} from 'react-materialize'
 
 
 class AddVehicle extends React.Component {
-
-
-  // <div id="customer-form">
   render () {
     return (
       <div className="container">
           <Row>
             <form>
-              <Input s={6} name="make" label="make" />
-              <Input s={6} name="Model" label="Model" />
-              <Input s={6} name="Color" label="Color" />
-              <Input s={6} name="License Plate" label="License Plate" />
+              <Input s={12} name="Make" label="Make" />
+              <Input s={12} name="Model" label="Model" />
+              <Input s={12} name="Color" label="Color" />
+              <Input s={12} name="License Plate" label="License Plate" />
             </form>
           </Row>
           <Button s={12}><Icon left>directions_car</Icon>Add Car</Button>

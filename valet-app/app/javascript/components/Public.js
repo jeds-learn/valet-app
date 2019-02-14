@@ -8,6 +8,8 @@ import PageNotFound from './Pages/PageNotFound'
 import RegistrationUser from './Pages/RegistrationUser'
 import RegistrationValet from './Pages/RegistrationValet'
 import Home from './Pages/Home'
+import Test from './Pages/Test'
+
 
 class Public extends React.Component {
   render () {
@@ -17,6 +19,7 @@ class Public extends React.Component {
       <Router>
         <Switch>
           <Route path="/" exact component={Home}/>
+          <Route path="/test" exact component={Test}/>
           <Route path="/registration" exact component={Registration}/>
           <Route path="/registration/user" exact component={RegistrationUser}/>
           <Route path="/registration/valet" exact component={RegistrationValet}/>

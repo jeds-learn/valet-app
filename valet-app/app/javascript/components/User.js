@@ -6,6 +6,7 @@ import NavigationBar from './Elements/NavigationBar'
 import Home from './Pages/Home'
 import PageNotFound from './Pages/PageNotFound'
 import BookNow from './Pages/BookNow'
+import BookDetails from './Pages/BookDetails'
 
 
 class User extends React.Component {
@@ -17,6 +18,7 @@ class User extends React.Component {
             <Switch>
               <Route path="/" exact component={Home}/>
               <Route path="/book_valet" exact component={BookNow}/>
+              <Route path="/book_valet/details" exact component={BookDetails}/>
               <Route component={PageNotFound}/>
             </Switch>
           </Router>

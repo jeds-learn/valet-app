@@ -1,31 +1,68 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
-import {Row, Table, Button, Input} from 'react-materialize'
-
+import {Row, Table, Button, Input, CollapsibleItem, Collapsible, Modal} from 'react-materialize'
+import DateTime from 'react-datetime';
+import moment from 'moment'
 
 
 class BookDetails extends React.Component {
+  state ={
+    orderDetails:{
+    start_date_time: null,
+    end_date_time: null,
+    total_price: null,
+    }
+  }
+  getStartTime = (date) => {
+    let {start} = this.state
+    this.setState({start:date})
+  }
 
+  handleOrderUpdate = (event) => {
+    const { orderDetails } = this.state
+    orderDetails[event.target.name] = event.target.value
+    this.setState({ orderDetails:orderDetails })
+  }
+
+  renderOrderData = (event) => {
+    even.preventDefault()
+    get('/orders/new.json',{
+      method:"GET",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({orders:this.state.orderDetails})
+    })
+    .then((response) => {
+      this.setState({responseOk:true})
+    })
+  }
+
+  // confirm button:  require syntax to bring an onclick alert that tells user he is confirmed 
   render () {
     return (
-      <div>
-        <h1> Book Details </h1>
-        <h1> this is the field that allows you to select your date</h1>
-        <Row>
-          <Input name='on' type='time' onChange={function(e, value) {}} />
-        </Row>
-        <h1> price estimator, should auto populate</h1>
-        <Input s={12} label="Price Estimator" defaultValue="Price Estimator" disabled />
-        <Input s={12} label="credit card data" defaultValue="must hide digits" disabled />
-        <Row>
-        <Input s={12} type='select' label="Your Vehicle" defaultValue='1'>
-          <option value='1'>Car 1</option>
-          <option value='2'>Car 2</option>
-        </Input>
-        // need to create an alert on click
-        <Button waves='light'>confirm</Button>
-      </Row>
+      <div className='container'>
+        <div>
+          <h1> Valet Reservation Details </h1>
+        </div>
+          <Collapsible s={4} header='Arrival Time' icon='access_time' popout defaultActiveKey={1}>
+                <DateTime s={4} defaultValue={"Drop off Time"} onChange={this.getStartTime} name="start_date_time" icon='access_time'/>
+          </Collapsible>
+          <Collapsible s={4} popout defaultActiveKey={1}>
+            <CollapsibleItem s={4} header='Price Estimate' icon='attach_money'>
+              $50
+            </CollapsibleItem >
+          </Collapsible>
+          <Collapsible s={4} popout defaultActiveKey={1}>
+            <CollapsibleItem s={4} header='Credit Card' icon='credit_card'>
+              ***4154
+            </CollapsibleItem>
+          </Collapsible>
+          <Collapsible s={4} popout defaultActiveKey={1}>
+            <CollapsibleItem s={4} header='Vehicle' icon='directions_car'>
+              $50
+            </CollapsibleItem>
+          </Collapsible>
+          <Button waves='light'>Confirm</Button>
 
       </div>
     )

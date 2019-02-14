@@ -1,29 +1,56 @@
 import React from "react"
 import PropTypes from "prop-types"
 import {BrowserRouter as Router, Route } from 'react-router-dom'
-import {Input, Row } from 'react-materialize'
+import {Input, Row, Button } from 'react-materialize'
 import DateTime from 'react-datetime';
+import moment from 'moment'
 
-class Home extends React.Component {
+class Test extends React.Component {
+  state = {
+    start: null,
+    end: null,
+    duration_hours: null
+  }
 
 
-handleChange = (event) => {
-  console.log(event._d);
-
+getStartTime = (date) => {
+  let {start} = this.state
+  this.setState({start:date})
 }
 
+
+
+getEndTime = (date) => {
+  let {end} = this.state
+  this.setState({end:date})
+}
+
+calculateDuration = () =>{
+  //Deconstructing state
+
+  let {start, end, duration_hours} = this.state
+  // if start and end are not null then continue
+  if(start !== null && end !== null) {
+    //Work out the difference between the start and end date
+      let duration = moment.duration(end.diff(start))
+      //return a paragrah with the duration as hours
+      let durationInHours = duration.asHours()
+      return durationInHours
+  }
+}
   render () {
     return (
       <div className="container">
         <h1>Home</h1>
             <div>
-              <DateTime onChange={this.handleChange} name= "start date" label= "Start Date" />
+              <DateTime defaultValue={"Drop Off Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getStartTime} name="start-date" />
               <br/>
-              <DateTime onChange={this.handleChange} name= "end date" label= "End Date" />
+              <DateTime defaultValue={"Collection Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getEndTime} name="end-date"/>
+              {this.calculateDuration()}
             </div>
       </div>
     )
   }
 }
 
-export default Home
+export default Test

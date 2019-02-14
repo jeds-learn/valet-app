@@ -3,14 +3,14 @@ import PropTypes from "prop-types"
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
 import {Row, Table, Button, Input} from 'react-materialize'
 
-
+import BookDetails from './BookNow.js'
 
 class BookNow extends React.Component {
 
   render () {
     return (
-      <div>
 
+      <div>
         <Row className = 'right'>
           <Input s={20} label="Search Available Valets" validate defaultValue=' ' />
         </Row>
@@ -47,7 +47,7 @@ class BookNow extends React.Component {
           </tbody>
         </Table>
         <div className = 'right'>
-          <Button waves='light'>Next</Button>
+          <a href= "./Pages/BookDetails"><Button waves='light'>Next</Button></a>
         </div>
 
       </div>

@@ -10,45 +10,23 @@ class BookDetails extends React.Component {
   render () {
     return (
       <div>
-        <h1>  Book Details </h1>
-        <Row className = 'right'>
-          <Input s={20} label="Search Available Valets" validate defaultValue=' ' />
+        <h1> Book Details </h1>
+        <h1> this is the field that allows you to select your date</h1>
+        <Row>
+          <Input name='on' type='time' onChange={function(e, value) {}} />
         </Row>
+        <h1> price estimator, should auto populate</h1>
+        <Input s={12} label="Price Estimator" defaultValue="Price Estimator" disabled />
+        <Input s={12} label="credit card data" defaultValue="must hide digits" disabled />
+        <Row>
+        <Input s={12} type='select' label="Your Vehicle" defaultValue='1'>
+          <option value='1'>Car 1</option>
+          <option value='2'>Car 2</option>
+        </Input>
+        // need to create an alert on click
+        <Button waves='light'>confirm</Button>
+      </Row>
 
-        <Table>
-          <thead>
-            <tr>
-              <th data-field="id">Name of user</th>
-              <th data-field="name">Business Name</th>
-              <th data-field="name">Valet Company</th>
-              <th data-field="name">Select</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>Name 1</td>
-              <td>Business 1</td>
-              <td>Valet 1</td>
-              <td><Input name='group1' type='radio' value='green' label='' className='with-gap' /></td>
-            </tr>
-            <tr>
-              <td>Name 1</td>
-              <td>Business 2</td>
-              <td>Valet 2</td>
-              <td><Input name='group1' type='radio' value='green' label='' className='with-gap' /></td>
-            </tr>
-            <tr>
-              <td>name 1</td>
-              <td>Business 3</td>
-              <td>Valet 3</td>
-              <td><Input name='group1' type='radio' value='green' label='' className='with-gap' /></td>
-            </tr>
-          </tbody>
-        </Table>
-        <div className = 'right'>
-          <Button waves='light'>Next</Button>
-        </div>
       </div>
     )
   }

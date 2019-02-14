@@ -9,6 +9,7 @@ class Test extends React.Component {
   state = {
     start: null,
     end: null,
+    duration_hours: null
   }
 
 
@@ -25,11 +26,17 @@ getEndTime = (date) => {
 }
 
 calculateDuration = () =>{
-  let {start, end} = this.state
-  let duration = moment.duration(end.diff(start))
-  let duration_hours = duration.asHours()
-  console.log(duration_hours);
+  //Deconstructing state
 
+  let {start, end, duration_hours} = this.state
+  // if start and end are not null then continue
+  if(start !== null && end !== null) {
+    //Work out the difference between the start and end date
+      let duration = moment.duration(end.diff(start))
+      //return a paragrah with the duration as hours
+      let durationInHours = duration.asHours()
+      return durationInHours
+  }
 }
   render () {
     return (
@@ -39,7 +46,7 @@ calculateDuration = () =>{
               <DateTime defaultValue={"Drop Off Time"} onChange={this.getStartTime} name="start-date" />
               <br/>
               <DateTime defaultValue={"Collection Time"} onChange={this.getEndTime} name="end-date"/>
-              <Button onClick={this.calculateDuration}>Click</Button>
+              {this.calculateDuration()}
             </div>
       </div>
     )

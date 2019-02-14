@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import NavigationBar from './Elements/NavigationBar'
 import Home from './Pages/Home'
 import PageNotFound from './Pages/PageNotFound'
+import Test from './Pages/Test'
 
 
 class User extends React.Component {

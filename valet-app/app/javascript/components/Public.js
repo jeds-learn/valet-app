@@ -13,7 +13,7 @@ class Public extends React.Component {
   render () {
     return (
       <div>
-      <NavigationBar/>
+      <NavigationBar userDetails={this.props}/>
       <h6> Public Path</h6>
       <Router>
         <Switch>

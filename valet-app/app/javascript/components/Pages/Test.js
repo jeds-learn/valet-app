@@ -12,12 +12,16 @@ class Test extends React.Component {
     duration_hours: null
   }
 
+// YYY-MM-DD HH:MM:SS
+
 
 getStartTime = (date) => {
   let {start} = this.state
+  console.log(date.format('YYYY-MM-DD HH:MM:SS'));
   this.setState({start:date})
 }
 
+// 'YYYY-MM-DD HH:MM:SS'
 
 
 getEndTime = (date) => {

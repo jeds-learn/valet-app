@@ -3,8 +3,6 @@ import PropTypes from "prop-types"
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
 import {Row, Table, Button, Input} from 'react-materialize'
 
-import BookDetails from './BookDetails.js'
-
 class BookNow extends React.Component {
 
   render () {

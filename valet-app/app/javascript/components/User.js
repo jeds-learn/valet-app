@@ -6,9 +6,9 @@ import NavigationBar from './Elements/NavigationBar'
 import Home from './Pages/Home'
 import PageNotFound from './Pages/PageNotFound'
 import BookNow from './Pages/BookNow'
-import BookDetails from './Pages/BookDetails'
 import AddVehicle from './Pages/AddVehicle'
 import ListOfValets from './Pages/ListOfValets'
+import NewOrder from './Pages/NewOrder'
 
 
 
@@ -21,10 +21,10 @@ class User extends React.Component {
           <Router>
             <Switch>
               <Route path="/" exact component={Home}/>
-              <Route path="/user/add_vehicle" exact component={AddVehicle}/>
+              <Route path="/user/new-order" exact component={NewOrder}/>
+              <Route path="/user/add-vehicle" exact component={AddVehicle}/>
               <Route path="/list-of-valets" exact component={ListOfValets}/>
-              <Route path="/user/book_valet" exact component={BookNow}/>
-              <Route path="/user/book_valet/details" exact component={BookDetails}/>
+              <Route path="/user/book-valet" exact component={BookNow}/>
               <Route component={PageNotFound}/>
             </Switch>
           </Router>

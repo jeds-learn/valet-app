@@ -6,7 +6,7 @@ import DateTime from 'react-datetime';
 import moment from 'moment'
 
 
-class BookDetails extends React.Component {
+class NewOrder extends React.Component {
   state ={
     orderDetails:{
     start_date_time: null,
@@ -37,7 +37,7 @@ class BookDetails extends React.Component {
     })
   }
 
-  // confirm button:  require syntax to bring an onclick alert that tells user he is confirmed 
+  // confirm button:  require syntax to bring an onclick alert that tells user he is confirmed
   render () {
     return (
       <div className='container'>
@@ -69,4 +69,4 @@ class BookDetails extends React.Component {
   }
 }
 
-export default BookDetails
+export default NewOrder

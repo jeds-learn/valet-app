@@ -1,6 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import {Navbar, NavItem, Icon} from 'react-materialize'
+import {Link} from 'react-router-dom'
+
 
 class NavigationBar extends React.Component {
   createNavBarItems = (userDetails) => {
@@ -34,7 +36,7 @@ class NavigationBar extends React.Component {
         <Navbar brand='Valet Service' right>
         <NavItem href='/list-of-valets'>List of Valets</NavItem>
         <NavItem href='/'>Create New Order</NavItem>
-        <NavItem href='/user/add_vehicle'>Add Vehicle</NavItem>
+        <NavItem href='/user/add-vehicle'>Add Vehicle</NavItem>
         <NavItem href='/'>View My Orders</NavItem>
         <NavItem href='/users/sign_out'>Sign Out</NavItem>
         </Navbar>

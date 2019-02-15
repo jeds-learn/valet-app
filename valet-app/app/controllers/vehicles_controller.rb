@@ -1,4 +1,5 @@
 class VehiclesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
 
   # GET /vehicles
@@ -24,7 +25,10 @@ class VehiclesController < ApplicationController
   # POST /vehicles
   # POST /vehicles.json
   def create
-    @vehicle = Vehicle.new(vehicle_params)
+    @vehicle = current_user.vehicles.new(vehicle_params)
+    p @vehicle
+    p @vehicle.valid?
+    p @vehicle.errors
 
     respond_to do |format|
       if @vehicle.save

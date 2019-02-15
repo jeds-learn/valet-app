@@ -10,7 +10,7 @@ class NavigationBar extends React.Component {
         //If you are not signed in
         <React.Fragment>
           <Navbar brand='Valet Service' right>
-          <NavItem>View Valet Services</NavItem>
+          <NavItem href='/list-of-valets'>List of Valets</NavItem>
           <NavItem href='/users/sign_in'>Sign In</NavItem>
           <NavItem href='/registration'>Sign Up</NavItem>
           </Navbar>
@@ -32,7 +32,9 @@ class NavigationBar extends React.Component {
       return(
       <React.Fragment>
         <Navbar brand='Valet Service' right>
+        <NavItem href='/list-of-valets'>List of Valets</NavItem>
         <NavItem href='/'>Create New Order</NavItem>
+        <NavItem href='/user/add_vehicle'>Add Vehicle</NavItem>
         <NavItem href='/'>View My Orders</NavItem>
         <NavItem href='/users/sign_out'>Sign Out</NavItem>
         </Navbar>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
 import {Row, Table, Button, Input} from 'react-materialize'
 
-class BookNow extends React.Component {
+class ListOfOrders extends React.Component {
 
   render () {
     return (
@@ -50,4 +50,4 @@ class BookNow extends React.Component {
   }
 }
 
-export default BookNow
+export default ListOfOrders

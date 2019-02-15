@@ -34,10 +34,9 @@ class NavigationBar extends React.Component {
       return(
       <React.Fragment>
         <Navbar brand='Valet Service' right>
-        <NavItem href='/list-of-valets'>List of Valets</NavItem>
-        <NavItem href='/'>Create New Order</NavItem>
+        <NavItem href='/list-of-valets'>Create Booking</NavItem>
         <NavItem href='/user/add-vehicle'>Add Vehicle</NavItem>
-        <NavItem href='/'>View My Orders</NavItem>
+        <NavItem href='/user/list-of-orders'>View My Orders</NavItem>
         <NavItem href='/users/sign_out'>Sign Out</NavItem>
         </Navbar>
       </React.Fragment>

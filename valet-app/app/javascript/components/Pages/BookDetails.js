@@ -37,7 +37,7 @@ class BookDetails extends React.Component {
     })
   }
 
-  // confirm button:  require syntax to bring an onclick alert that tells user he is confirmed 
+  // confirm button:  require syntax to bring an onclick alert that tells user he is confirmed
   render () {
     return (
       <div className='container'>

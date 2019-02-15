@@ -8,18 +8,20 @@ class ListOfValets extends React.Component {
   render () {
     return (
 
-      <div>
-        <Row className="container">
-          <Input s={12} label="Search Available Valets" validate defaultValue=' ' />
-        </Row>
+      <div className="container">
 
-        <Table className="container">
+  <Row>
+        <Input s={4} defaultValue='Search' />
+
+  </Row>
+        <Table>
+
           <thead>
             <tr>
-              <th data-field="id">Name of user</th>
-              <th data-field="name">Business Name</th>
-              <th data-field="name">Valet Company</th>
-              <th data-field="name"></th>
+              <th data-field="company_name">Company Name</th>
+              <th data-field="address">Address</th>
+              <th data-field="state">State</th>
+              <th data-field="button"></th>
             </tr>
           </thead>
 

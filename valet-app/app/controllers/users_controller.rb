@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
 skip_before_action :verify_authenticity_token
+before_action :authenticate_user!, except: :create
+
 
   def create
     @user = User.new(user_params)
-    p @user
-    p @user.valid?
-    p @user.errors
+    # p @user
+    # p @user.valid?
+    # p @user.errors
 
     respond_to do |format|
       if @user.save
@@ -16,6 +18,11 @@ skip_before_action :verify_authenticity_token
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def get_valet
+    @users = User.where(is_valet: true)
+    render :json => @users
   end
 
 

@@ -92,7 +92,7 @@ render() {
           </div>
           <Row>
           <h4>Your Vehicles</h4>
-          <Table striped>
+          <Table striped bordered>
             <thead>
               <tr>
                 <th>Make</th>

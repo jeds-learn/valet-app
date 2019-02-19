@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
-import {Row, Col, Table, Button, Input} from 'react-materialize'
+import {Row, Col, Table, Button, Input, Icon} from 'react-materialize'
 
 class ListOfValets extends React.Component {
   state = {
@@ -27,11 +27,13 @@ class ListOfValets extends React.Component {
     console.log(this.state);
     return (
       <div className="container">
-        <Row s={6}>
+      <Row>
+      <Col s={3}>
           <Input placeholder='Search' />
-        </Row>
+          </Col>
+          </Row>
           <div>
-            <Table>
+            <Table hoverable>
               <thead>
                 <tr>
                   <th data-field="company_name">Company Name</th>
@@ -51,7 +53,7 @@ class ListOfValets extends React.Component {
                   <td>{valet.city}</td>
                   <td>{valet.state}</td>
                   <td>${valet.cost_per_hour}</td>
-                  <td><Link to={"/"}><Button waves='light'>Book</Button></Link></td>
+                  <td><Link to={`/user/new-order/${valet.id}`}><Button waves='light'>Book</Button></Link></td>
                   </tr>
                 )
               })}

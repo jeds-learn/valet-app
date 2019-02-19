@@ -25,6 +25,10 @@ before_action :authenticate_user!, except: :create
     render :json => @users
   end
 
+  def get_a_valet
+    @valet = User.find(params[:id])
+    render :json => @valet
+  end
 
   private
 

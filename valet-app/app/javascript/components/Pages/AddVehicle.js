@@ -80,18 +80,18 @@ render() {
     <div className="container">
       <div>
           <Row>
-          <h4>Add Vehicle</h4>
+          <h4>Add A Vehicle</h4>
             <form onSubmit={this.submitVehicleToDb}>
               <Input s={12} onChange={this.onChange} name="make" label="Make" />
               <Input s={12} onChange={this.onChange} name="model" label="Model" />
               <Input s={12} onChange={this.onChange} name="color" label="Color" />
               <Input s={12} onChange={this.onChange} name="license_plate" label="License Plate" />
-              <Button s={12}><Icon left>directions_car</Icon>Add Car</Button>
+              <Button className="right-align" s={12}><Icon left>directions_car</Icon>Add Car</Button>
             </form>
           </Row>
           </div>
           <Row>
-          <h4>Your Vehicles</h4>
+          <h4 className="right-align">Your Vehicles</h4>
           <Table striped bordered>
             <thead>
               <tr>

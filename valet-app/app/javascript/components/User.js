@@ -22,7 +22,7 @@ class User extends React.Component {
           <Router>
             <Switch>
               <Route path="/" exact component={Home}/>
-              <Route path="/user/new-order/:valet_id" exact component={NewOrder}/>
+              <Route userDetails={this.props} path="/user/new-order/:valet_id" exact component={NewOrder}/>
               <Route path="/user/add-vehicle" exact component={AddVehicle}/>
               <Route path="/list-of-valets" exact component={ListOfValets}/>
               <Route path="/user/list-of-orders" exact component={ListOfOrders}/>

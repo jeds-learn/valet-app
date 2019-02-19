@@ -164,7 +164,6 @@ onSubmitOrder = (event) => {
         </Row>
           {this.estimateCost()}
           <Button onClick={this.onSubmitOrder} waves='light'>Confirm Booking</Button>
-
       </div>
     )
   }

@@ -9,8 +9,7 @@ import ListOfOrders from './Pages/ListOfOrders'
 import AddVehicle from './Pages/AddVehicle'
 import ListOfValets from './Pages/ListOfValets'
 import NewOrder from './Pages/NewOrder'
-
-
+import ValetDashboard from './Pages/ValetDashboard'
 
 
 
@@ -26,6 +25,7 @@ class User extends React.Component {
               <Route path="/user/add-vehicle" exact component={AddVehicle}/>
               <Route path="/list-of-valets" exact component={ListOfValets}/>
               <Route path="/user/list-of-orders" exact component={ListOfOrders}/>
+              <Route path="/user/Valet-Dashboard" exact component={ValetDashboard}/>
               <Route component={PageNotFound}/>
             </Switch>
           </Router>

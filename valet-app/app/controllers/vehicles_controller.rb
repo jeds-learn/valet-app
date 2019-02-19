@@ -5,7 +5,8 @@ class VehiclesController < ApplicationController
   # GET /vehicles
   # GET /vehicles.json
   def index
-    @vehicles = Vehicle.all
+    # @vehicles = Vehicle.all
+    @vehicles = current_user.vehicles.all
   end
 
   # GET /vehicles/1
@@ -59,6 +60,9 @@ class VehiclesController < ApplicationController
   # DELETE /vehicles/1.json
   def destroy
     @vehicle.destroy
+    p @vehicle
+    p @vehicle.valid?
+    p @vehicle.errors
     respond_to do |format|
       format.html { redirect_to vehicles_url, notice: 'Vehicle was successfully destroyed.' }
       format.json { head :no_content }

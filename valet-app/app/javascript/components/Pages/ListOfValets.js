@@ -30,7 +30,7 @@ class ListOfValets extends React.Component {
       <Row>
       <Col s={3}>
           <Input placeholder='Search' />
-          </Col>
+      </Col>
           </Row>
           <div>
             <Table hoverable>

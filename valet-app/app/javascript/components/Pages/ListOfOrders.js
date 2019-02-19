@@ -13,7 +13,7 @@ class ListOfOrders extends React.Component {
         <Table striped bordered centered>
           <thead >
             <tr >
-              <th data-field="Booking">Booking</th>
+              <th data-field="Booking">Company</th>
               <th data-field="Location">Location</th>
               <th data-field="Arrival Time">Arrival Time</th>
               <th data-field="Price">Price</th>

@@ -69,56 +69,10 @@ class ValetDashboard extends React.Component {
     return (
       <div className="container">
         <h1>Valet Dashboard</h1>
-        <Row>
-          <Col>
-          <Input label="filter bar" validate defaultValue='' />
-          </Col>
-        </Row>
-        <Row>
-          <Col s={4}>
-            <Icon left>access_alarm</Icon><DateTime className="col s5" defaultValue={"Drop Off Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getStartTime} name="start-date" />
-          </Col>
-          <Col s={4}>
-            <Icon left>access_alarm</Icon><DateTime className="col s5" defaultValue={"Collection Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getStartTime} name="start-date" />
-          </Col>
-        </Row>
-        <div className="App">
-          <Chart
-            chartType="AreaChart"
-            width="100%"
-            height="400px"
-            legendToggle
-            rows={rows}
-            columns={columns}
-          />
-        </div>
-        <Row >
-          <Col s={6}>
-            <div className={"my-pretty-chart-container"}>
-              <Chart
-                chartType="PieChart"
-                width="100%"
-                height="400px"
-                data={data}
-                options={options}
-                legendToggle
-              />
-            </div>
-          </Col>
-          <Col s={6}>
-            <div className={"my-pretty-chart-container"}>
-              <Chart
-                chartType="PieChart"
-                width="100%"
-                height="400px"
-                data={revData}
-                options={revOptions}
-                legendToggle
-              />
-            </div>
-          </Col>
-        </Row>
 
+        <div>
+          <h3>Recent Orders</h3>
+        </div>
 
         <Table striped bordered centered>
           <thead >
@@ -167,6 +121,62 @@ class ValetDashboard extends React.Component {
             </tr>
           </tbody>
         </Table>
+{/*        <Row>
+          <Col>
+          <Input label="filter bar" validate defaultValue='' />
+          </Col>
+        </Row>
+        <Row>
+          <Col s={4}>
+            <Icon left>access_alarm</Icon><DateTime className="col s5" defaultValue={"Drop Off Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getStartTime} name="start-date" />
+          </Col>
+          <Col s={4}>
+            <Icon left>access_alarm</Icon><DateTime className="col s5" defaultValue={"Collection Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getStartTime} name="start-date" />
+          </Col>
+        </Row>*/}
+        <div>
+          <h3>Overview: Order Status</h3>
+        </div>
+
+        <div className="App">
+          <Chart
+            chartType="AreaChart"
+            width="100%"
+            height="400px"
+            legendToggle
+            rows={rows}
+            columns={columns}
+          />
+        </div>
+        <Row >
+          <Col s={6}>
+            <div className={"my-pretty-chart-container"}>
+              <Chart
+                chartType="PieChart"
+                width="100%"
+                height="400px"
+                data={data}
+                options={options}
+                legendToggle
+              />
+            </div>
+          </Col>
+          <Col s={6}>
+            <div className={"my-pretty-chart-container"}>
+              <Chart
+                chartType="PieChart"
+                width="100%"
+                height="400px"
+                data={revData}
+                options={revOptions}
+                legendToggle
+              />
+            </div>
+          </Col>
+        </Row>
+
+
+
 
       </div>
     )

@@ -239,9 +239,15 @@
    cursor: default;
  }
 
- .header{
-     background: url(../app/assets/img/man.jpg);
+ .background-image{
      background-size: cover;
      background-position: center;
      min-height: 1000px;
+     width: padding: 100%;
    }
+
+  .sticky{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+  }

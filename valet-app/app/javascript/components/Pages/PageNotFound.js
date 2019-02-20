@@ -12,11 +12,11 @@ class PageNotFound extends React.Component {
         <h1>Page Not Found</h1>
         <div>
         <Card className='small'
-          header={<CardTitle image='img/sample-1.jpg'>404 error</CardTitle>}>
+          header={<CardTitle imageSrc={require('../../../assets/img/man.jpg')}>404 error</CardTitle>}>
           Page not found.  We are working on this, we promise!
           </Card>
           <Col m={7} s={12}>
-            <Card horizontal header={<CardTitle image="./img/card-horizontal.jpeg">404 Error!</CardTitle>}>
+            <Card horizontal header={<CardTitle image="../../../assets/img/man.jpg">404 Error!</CardTitle>}>
               <p>Page not found.  We are working on this, we promise!</p>
             </Card>
           </Col>

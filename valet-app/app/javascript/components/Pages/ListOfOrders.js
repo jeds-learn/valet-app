@@ -1,10 +1,34 @@
 import React from "react"
 import PropTypes from "prop-types"
-import {BrowserRouter as Router, Route } from 'react-router-dom'
+import {BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import {Table, Icon, Button, Col, Row, Input} from 'react-materialize'
+import moment from 'moment'
+
 
 
 class ListOfOrders extends React.Component {
+  state = {
+    myBookings: []
+  }
+
+componentDidMount = () =>{
+  this.getBookings()
+}
+
+
+
+getBookings = () => {
+  fetch('/orders.json')
+  .then((response) => response.json())
+  .then((json) => {
+    this.setState({myBookings: json})
+    console.log(this.state);
+  })
+  .catch((e) =>{
+    console.log("Error", e);
+  })
+}
+
   render () {
     return (
       <div className="container">
@@ -13,40 +37,27 @@ class ListOfOrders extends React.Component {
         <Table striped bordered centered>
           <thead >
             <tr >
+              <th data-field="Date">Date</th>
+              <th data-field="Arrival Time">Arrival Time</th>
               <th data-field="Booking">Company</th>
               <th data-field="Location">Location</th>
-              <th data-field="Arrival Time">Arrival Time</th>
-              <th data-field="Price">Price</th>
               <th data-field="Status">Status</th>
               <th data-field="Details"></th>
             </tr>
           </thead>
-
           <tbody>
-            <tr >
-              <td >Current booking</td>
-              <td >Location</td>
-              <td >2:30 PM</td>
-              <td >Price</td>
-              <td >Pending</td>
-              <td><Button waves='light'>Details</Button></td>
-            </tr>
-            <tr >
-              <td >Previous Booking</td>
-              <td >Location</td>
-              <td >11:45 AM</td>
-              <td >Price</td>
-              <td >Canceled</td>
-              <td><Button waves='light'>Details</Button></td>
-            </tr>
-            <tr >
-              <td >Last Years Booking</td>
-              <td >Location</td>
-              <td >1:00 PM</td>
-              <td >Price</td>
-              <td >Complete</td>
-              <td><Button waves='light'>Details</Button></td>
-            </tr>
+          {this.state.myBookings.map((booking, index) => {
+            return(
+              <tr key={index}>
+              <td>{moment.utc(booking.start_time).format('l')}</td>
+              <td>{moment.utc(booking.start_time).format('LT')}</td>
+              <td>{booking.valet_company_name}</td>
+              <td>{booking.valet_address}</td>
+              <td>{booking.order_status}</td>
+              <td><Link to={`/#`}><Button id={booking.id} waves='light'>View Details</Button></Link></td>
+              </tr>
+            )
+          })}
           </tbody>
         </Table>
 

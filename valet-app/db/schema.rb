@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_19_204726) do
+ActiveRecord::Schema.define(version: 2019_02_20_185729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 2019_02_19_204726) do
     t.string "zip"
     t.float "cost_per_hour"
     t.boolean "is_valet"
+    t.string "long"
+    t.string "lat"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

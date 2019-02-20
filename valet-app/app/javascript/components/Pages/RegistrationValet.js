@@ -20,6 +20,8 @@ class RegistrationValet extends React.Component {
       cost_per_hour: null,
       password: null,
       password_confirmation: null,
+      long: null,
+      lat: null,
     }
   }
 
@@ -29,15 +31,34 @@ handleChange = (event) => {
   this.setState({ valetAttributes:valetAttributes })
 }
 
+getLongandLat = () => {
+  let valetAttributes = this.state.valetAttributes
+  let fullAddress = `${valetAttributes.address} ${valetAttributes.zip}`
+  var res = encodeURI(fullAddress)
+  let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${res}&key=AIzaSyDpZEI65XSi7ZtNpZV6CwwSa6vO28t84lg`
+  return fetch(url)
+  .then((response) => response.json())
+  .then((jsonPayload) => {
+    valetAttributes.long =jsonPayload.results[0].geometry.location.lng.toString()
+    valetAttributes.lat =  jsonPayload.results[0].geometry.location.lat.toString()
+    this.setState({valetAttributes})
+    return valetAttributes
+  })
+
+}
+
 submitValetToDb = (event) => {
   event.preventDefault()
-  fetch('/users/create.json', {
-    method:"POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({user:this.state.valetAttributes})
-  })
-  .then((response)=>{
-    this.setState({responseOk:true})
+  this.getLongandLat().then((valetAttributes) =>{
+    fetch('/users/create.json', {
+      method:"POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({user:valetAttributes})
+    })
+    .then((response)=>{
+      console.log("http response", response);
+      this.setState({responseOk:true})
+    })
   })
 }
 

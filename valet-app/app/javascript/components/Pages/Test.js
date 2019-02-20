@@ -2,57 +2,71 @@ import React from "react"
 import PropTypes from "prop-types"
 import {BrowserRouter as Router, Route } from 'react-router-dom'
 import {Input, Row, Button } from 'react-materialize'
-import DateTime from 'react-datetime';
-import moment from 'moment'
+import GoogleMapReact from 'google-map-react';
+
+
+const Marker = ({ text }) => (
+  <div style={{
+    color: 'white',
+    background: 'grey',
+    padding: '15px 10px',
+    display: 'inline-flex',
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '100%',
+    transform: 'translate(-50%, -50%)'
+  }}>
+    {text}
+  </div>
+);
 
 class Test extends React.Component {
-  state = {
-    start: null,
-    end: null,
-    duration_hours: null
-  }
+  static defaultProps = {
+    center: {
+      lat: 32.715024,
+      lng: -117.147639
+    },
+    zoom: 15
+  };
 
-// YYY-MM-DD HH:MM:SS
 
 
-getStartTime = (date) => {
-  let {start} = this.state
-  console.log(date.format('YYYY-MM-DD HH:MM:SS'));
-  this.setState({start:date})
+
+createUrlString = () => {
+  // console.log(jsonTest.results[0].geometry.location);
+  var uri = "715 J street 92101";
+  var res = encodeURI(uri);
+  let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${res}&key=AIzaSyDpZEI65XSi7ZtNpZV6CwwSa6vO28t84lg`
+  fetch(url)
+  .then((response) => response.json())
+  .then((jsonPayload) => console.log(jsonPayload.results[0].geometry.location))
 }
 
-// 'YYYY-MM-DD HH:MM:SS'
 
 
-getEndTime = (date) => {
-  let {end} = this.state
-  this.setState({end:date})
-}
 
-calculateDuration = () =>{
-  //Deconstructing state
-
-  let {start, end, duration_hours} = this.state
-  // if start and end are not null then continue
-  if(start !== null && end !== null) {
-    //Work out the difference between the start and end date
-      let duration = moment.duration(end.diff(start))
-      //return a paragrah with the duration as hours
-      let durationInHours = duration.asHours()
-      return durationInHours
-  }
-}
   render () {
+
+    this.createUrlString()
     return (
-      <div className="container">
-        <h1>Home</h1>
-            <div>
-              <DateTime defaultValue={"Drop Off Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getStartTime} name="start-date" />
-              <br/>
-              <DateTime defaultValue={"Collection Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getEndTime} name="end-date"/>
-              {this.calculateDuration()}
-            </div>
-      </div>
+      // Important! Always set the container height explicitly
+
+<div style={{ height: '50vh', width: '50%' }}>
+<h1>Test</h1>
+  <GoogleMapReact
+    bootstrapURLKeys={{ key: 'AIzaSyCMQgVmwu-p2ewvYsQvoUDiWwXOYU6N8cI' }}
+    defaultCenter={this.props.center}
+    defaultZoom={this.props.zoom}
+  >
+  <Marker
+    lat={32.7092125}
+    lng={-117.1580465}
+    text={'Bubs'}
+  />
+
+  </GoogleMapReact>
+</div>
     )
   }
 }

@@ -5,9 +5,9 @@ before_action :authenticate_user!, except: :create
 
   def create
     @user = User.new(user_params)
-    # p @user
-    # p @user.valid?
-    # p @user.errors
+    p @user
+    p @user.valid?
+    p @user.errors
 
     respond_to do |format|
       if @user.save
@@ -39,7 +39,7 @@ before_action :authenticate_user!, except: :create
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:company_name, :address, :city, :state, :zip, :opening_time, :closing_time, :cost_per_hour, :first_name, :last_name, :phone, :email, :is_valet, :password, :password_confirmation)
+      params.require(:user).permit(:company_name, :address, :city, :state, :zip, :opening_time, :closing_time, :cost_per_hour, :first_name, :last_name, :phone, :email, :is_valet, :password, :password_confirmation, :long, :lat)
     end
 
 

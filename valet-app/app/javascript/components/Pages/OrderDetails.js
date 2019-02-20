@@ -75,10 +75,10 @@ deleteBooking = (event) => {
           <Input placeholder={booking.valet_zip} s={3} label="Zip Code" disabled={unEditable}/>
       </Row>
       <Row>
-        <Button tooltip="Edit Times" floating icon='schedule' className='deep-purple lighten-2 register-btn'/>
-        <Button tooltip="Add Tip" floating icon='attach_money' className='blue lighten-2 register-btn'/>
-        <Button tooltip="Request Pick Up" floating icon='directions_car' className='green lighten-2 register-btn'/>
-        <Button onClick={() => {$('#cancel').modal('open')}} tooltip="Cancel Booking" floating icon='cancel' className='red lighten-2 register-btn'/>
+        <Col s={2} offset='s1'><Button large tooltip="Edit Times" floating icon='schedule' className='deep-purple lighten-2 center-align'/></Col>
+        <Col s={2} offset='s1'><Button large tooltip="Add Tip" floating icon='attach_money' className='blue lighten-2'/></Col>
+        <Col s={2} offset='s1'><Button large tooltip="Request Pick Up" floating icon='directions_car' className='green lighten-2'/></Col>
+        <Col s={2} offset='s1'><Button large onClick={() => {$('#cancel').modal('open')}} tooltip="Cancel Booking" floating icon='cancel' className='red lighten-2'/></Col>
       </Row>
     <div>
       <Modal

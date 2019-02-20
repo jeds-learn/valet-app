@@ -238,3 +238,10 @@
  .rdtTime td {
    cursor: default;
  }
+
+ .header{
+     background: url(../app/assets/img/man.jpg);
+     background-size: cover;
+     background-position: center;
+     min-height: 1000px;
+   }

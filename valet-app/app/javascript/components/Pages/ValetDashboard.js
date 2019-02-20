@@ -175,10 +175,6 @@ class ValetDashboard extends React.Component {
             </div>
           </Col>
         </Row>
-
-
-
-
       </div>
     )
   }

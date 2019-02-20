@@ -102,7 +102,6 @@ handleVehicleId = (event) => {
 
 createOrder = (event) => {
   event.preventDefault()
-  console.log(this.state.orderDetails);
   fetch('/orders.json', {
     method:"POST",
     headers: {"Content-Type": "application/json"},
@@ -124,8 +123,8 @@ onSubmitOrder = (event) => {
   console.log(orderDetails);
   let duration = moment.duration(end_time_moment.diff(start_time_moment))
   let durationAsHours = duration.asHours()
-  orderDetails.start_time = start_time_moment.format('YYYY-MM-DD HH:MM:SS'),
-  orderDetails.end_time =  end_time_moment.format('YYYY-MM-DD HH:MM:SS'),
+  orderDetails.start_time = start_time_moment.format('YYYY-MM-DD HH:mm:SS'),
+  orderDetails.end_time =  end_time_moment.format('YYYY-MM-DD HH:mm:SS'),
   orderDetails.length_of_stay = durationAsHours
   orderDetails.total_price = durationAsHours * this.state.valetDetails.cost_per_hour,
   orderDetails.order_status = "Order Confirmed",

@@ -23,7 +23,8 @@ class NewOrder extends React.Component {
       total_price: null,
       order_status: null,
       vehicle_id: null,
-      valet: null
+      valet: null,
+      tip: 0
     }
   }
 

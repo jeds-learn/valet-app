@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import {BrowserRouter as Router, Route } from 'react-router-dom'
+import {Parallax} from 'react-materialize'
 
 
 // import Image from "..../assets/img/man.jpg"
@@ -16,9 +17,11 @@ handleChange = (event) => {
 
   render () {
     return (
+
       <div className="header">
         <h1>Home</h1>
         <img src="..../assets/img/man.jpg" />
+
       </div>
     )
   }

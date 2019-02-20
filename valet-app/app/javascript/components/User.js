@@ -29,6 +29,7 @@ class User extends React.Component {
               <Route path="/user/valet-dashboard" exact component={ValetDashboard}/>
               <Route path="/list-of-valets" exact component={ListOfValets}/>
               <Route path="/user/list-of-orders" exact component={ListOfOrders}/>
+              <Route path="/user/Valet-Dashboard" exact component={ValetDashboard}/>
               <Route component={PageNotFound}/>
             </Switch>
           </Router>

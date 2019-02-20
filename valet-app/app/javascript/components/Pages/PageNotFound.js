@@ -5,8 +5,6 @@ import {Card, CardTitle, Col} from 'react-materialize'
 
 
 
-
-
 class PageNotFound extends React.Component {
   render () {
     return (

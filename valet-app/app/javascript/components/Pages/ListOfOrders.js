@@ -14,9 +14,6 @@ class ListOfOrders extends React.Component {
 componentDidMount = () =>{
   this.getBookings()
 }
-
-
-
 getBookings = () => {
   fetch('/orders.json')
   .then((response) => response.json())
@@ -54,7 +51,7 @@ getBookings = () => {
               <td>{booking.valet_company_name}</td>
               <td>{booking.valet_address}</td>
               <td>{booking.order_status}</td>
-              <td><Link to={`/#`}><Button id={booking.id} waves='light'>View Details</Button></Link></td>
+              <td><Link to={`/user/list-of-orders/${booking.id}`}><Button id={booking.id} waves='light'>View Details</Button></Link></td>
               </tr>
             )
           })}

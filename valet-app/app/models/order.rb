@@ -4,5 +4,7 @@ class Order < ApplicationRecord
   delegate :cost_per_hour, to: :valet
   delegate :company_name, to: :valet, prefix:true
   delegate :address, to: :valet, prefix:true
-
+  delegate :city, to: :valet, prefix:true
+  delegate :state, to: :valet, prefix:true
+  delegate :zip, to: :valet, prefix:true
 end

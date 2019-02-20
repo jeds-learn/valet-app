@@ -30,13 +30,6 @@ class ListOfValets extends React.Component {
     },
     zoom: 15
   }
-  // static defaultProps = {
-  //   center: {
-  //     lat: 32.715024,
-  //     lng: -117.147639
-  //   },
-  //   zoom: 15
-  // };
 
   componentDidMount(){
     //talk to the end point to get all dvds
@@ -59,7 +52,6 @@ class ListOfValets extends React.Component {
     center.lat = parseFloat(obj.lat)
     console.log("center",center);
     this.setState({center})
-    this.forceUpdate()
   }
 
   render () {

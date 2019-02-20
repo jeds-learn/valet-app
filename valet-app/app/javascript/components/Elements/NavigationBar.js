@@ -11,7 +11,7 @@ class NavigationBar extends React.Component {
       return(
         //If you are not signed in
         <React.Fragment>
-          <Navbar fixed brand='Valet Service' right>
+          <Navbar class="blue-grey" fixed brand='Valet Service' right>
           <NavItem href='/list-of-valets'>List of Valets</NavItem>
           <NavItem href='/users/sign_in'>Sign In</NavItem>
           <NavItem href='/registration'>Sign Up</NavItem>
@@ -22,7 +22,7 @@ class NavigationBar extends React.Component {
     }else if (userDetails.logged_in && userDetails.is_valet) {
       return(
         <React.Fragment>
-          <Navbar fixed brand='Valet Service' right>
+          <Navbar class="blue-grey" fixed brand='Valet Service' right>
           <NavItem>Dashboard</NavItem>
           <NavItem href='/'>View Jobs</NavItem>
           <NavItem href='/users/sign_out'>Sign Out</NavItem>
@@ -33,7 +33,7 @@ class NavigationBar extends React.Component {
     }else if (userDetails.logged_in && userDetails.is_valet === false){
       return(
       <React.Fragment>
-        <Navbar fixed brand='Valet Service' right>
+        <Navbar class="blue-grey" fixed brand='Valet Service' right>
         <NavItem href='/list-of-valets'>Create Booking</NavItem>
         <NavItem href='/user/add-vehicle'>My Vehicles</NavItem>
         <NavItem href='/user/list-of-orders'>View My Orders</NavItem>

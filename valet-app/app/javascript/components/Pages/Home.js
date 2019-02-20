@@ -4,27 +4,35 @@ import {BrowserRouter as Router, Route } from 'react-router-dom'
 import {Parallax} from 'react-materialize'
 
 
-// import Image from "..../assets/img/man.jpg"
-
+//Images used for HomePage
+import SkyLineImage from '../../../assets/img/sdskyline3.jpg'
 
 class Home extends React.Component {
-
-
-handleChange = (event) => {
-  console.log(event._d);
-}
-
   render () {
     return (
-
       <div>
-        <h1>Home</h1>
-        <div container>
-          <Parallax imageSrc={require('../../../assets/img/man.jpg')}/>
-        </div>
-          <h1>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus
-          </h1>
+        <Parallax imageSrc={SkyLineImage}/>
+          <h1>About Us</h1>
+          <p>
+            Lorizzle pizzle daahng dawg brizzle amizzle, crunk adipiscing elit. Fo sheezy velizzle, go to hizzle volutpizzle, suscipit quis, fo shizzle mah nizzle fo rizzle, mah home g-dizzle stuff, hizzle. Mofo crunk tortizzle. Check out this dawg. Shiz izzle dolizzle crackalackin turpizzle nizzle gizzle. Maurizzle cool bizzle et turpis. Doggy in tortizzle. Pellentesque eleifend rhoncus uhuh ... yih!. In hac habitasse doggy things. Phat dapibizzle. Curabitizzle crackalackin crackalackin, pretium eu, stuff ac, uhuh ... yih! vitae, nunc. Pot suscipit. Integer yippiyo velit sizzle fo shizzle.
+          </p>
+          <p>
+            Lorizzle pizzle daahng dawg brizzle amizzle, crunk adipiscing elit. Fo sheezy velizzle, go to hizzle volutpizzle, suscipit quis, fo shizzle mah nizzle fo rizzle, mah home g-dizzle stuff, hizzle. Mofo crunk tortizzle. Check out this dawg. Shiz izzle dolizzle crackalackin turpizzle nizzle gizzle. Maurizzle cool bizzle et turpis. Doggy in tortizzle. Pellentesque eleifend rhoncus uhuh ... yih!. In hac habitasse doggy things. Phat dapibizzle. Curabitizzle crackalackin crackalackin, pretium eu, stuff ac, uhuh ... yih! vitae, nunc. Pot suscipit. Integer yippiyo velit sizzle fo shizzle.
+          </p>
+          <p>
+            Lorizzle pizzle daahng dawg brizzle amizzle, crunk adipiscing elit. Fo sheezy velizzle, go to hizzle volutpizzle, suscipit quis, fo shizzle mah nizzle fo rizzle, mah home g-dizzle stuff, hizzle. Mofo crunk tortizzle. Check out this dawg. Shiz izzle dolizzle crackalackin turpizzle nizzle gizzle. Maurizzle cool bizzle et turpis. Doggy in tortizzle. Pellentesque eleifend rhoncus uhuh ... yih!. In hac habitasse doggy things. Phat dapibizzle. Curabitizzle crackalackin crackalackin, pretium eu, stuff ac, uhuh ... yih! vitae, nunc. Pot suscipit. Integer yippiyo velit sizzle fo shizzle.
+          </p>
+          <Parallax imageSrc={SkyLineImage}/>
+          <h1>Contact Us</h1>
+          <p>
+            Lorizzle pizzle daahng dawg brizzle amizzle, crunk adipiscing elit. Fo sheezy velizzle, go to hizzle volutpizzle, suscipit quis, fo shizzle mah nizzle fo rizzle, mah home g-dizzle stuff, hizzle. Mofo crunk tortizzle. Check out this dawg. Shiz izzle dolizzle crackalackin turpizzle nizzle gizzle. Maurizzle cool bizzle et turpis. Doggy in tortizzle. Pellentesque eleifend rhoncus uhuh ... yih!. In hac habitasse doggy things. Phat dapibizzle. Curabitizzle crackalackin crackalackin, pretium eu, stuff ac, uhuh ... yih! vitae, nunc. Pot suscipit. Integer yippiyo velit sizzle fo shizzle.
+          </p>
+          <p>
+            Lorizzle pizzle daahng dawg brizzle amizzle, crunk adipiscing elit. Fo sheezy velizzle, go to hizzle volutpizzle, suscipit quis, fo shizzle mah nizzle fo rizzle, mah home g-dizzle stuff, hizzle. Mofo crunk tortizzle. Check out this dawg. Shiz izzle dolizzle crackalackin turpizzle nizzle gizzle. Maurizzle cool bizzle et turpis. Doggy in tortizzle. Pellentesque eleifend rhoncus uhuh ... yih!. In hac habitasse doggy things. Phat dapibizzle. Curabitizzle crackalackin crackalackin, pretium eu, stuff ac, uhuh ... yih! vitae, nunc. Pot suscipit. Integer yippiyo velit sizzle fo shizzle.
+          </p>
+          <p>
+            Lorizzle pizzle daahng dawg brizzle amizzle, crunk adipiscing elit. Fo sheezy velizzle, go to hizzle volutpizzle, suscipit quis, fo shizzle mah nizzle fo rizzle, mah home g-dizzle stuff, hizzle. Mofo crunk tortizzle. Check out this dawg. Shiz izzle dolizzle crackalackin turpizzle nizzle gizzle. Maurizzle cool bizzle et turpis. Doggy in tortizzle. Pellentesque eleifend rhoncus uhuh ... yih!. In hac habitasse doggy things. Phat dapibizzle. Curabitizzle crackalackin crackalackin, pretium eu, stuff ac, uhuh ... yih! vitae, nunc. Pot suscipit. Integer yippiyo velit sizzle fo shizzle.
+          </p>
       </div>
     )
   }

@@ -251,3 +251,16 @@
     position: sticky;
     top: 0;
   }
+
+  .reaper-image{
+    padding-top: 50px;
+  }
+
+  .reaper-text{
+    font-size: 200%;
+  }
+
+  .nav-padding{
+    padding-left: 20px;
+    background: blue-grey;
+  }

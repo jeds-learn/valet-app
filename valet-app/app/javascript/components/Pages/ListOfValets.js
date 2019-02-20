@@ -27,10 +27,10 @@ class ListOfValets extends React.Component {
     return (
       <div className="container">
       <Row>
-      <Col s={3}>
-          <Input placeholder='Search' />
-          </Col>
-          </Row>
+        <Col s={3}>
+            <Input placeholder='Search' />
+        </Col>
+      </Row>
           <div>
             <Table hoverable>
               <thead>

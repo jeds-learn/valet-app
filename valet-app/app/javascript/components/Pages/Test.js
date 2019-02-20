@@ -6,15 +6,15 @@ import GoogleMapReact from 'google-map-react';
 
 
 const Marker = ({ text }) => (
-  <div style={{
+  <div onClick={() => this.hello} style={{
     color: 'white',
-    background: 'grey',
-    padding: '15px 10px',
+    background: '#ee6e73',
+    padding: '5px 5px',
     display: 'inline-flex',
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: '100%',
+    // borderRadius: '100%',
     transform: 'translate(-50%, -50%)'
   }}>
     {text}
@@ -30,7 +30,9 @@ class Test extends React.Component {
     zoom: 15
   };
 
-
+  hello = (event) => {
+    console.log("hello");
+  }
 
 
 createUrlString = () => {
@@ -60,9 +62,19 @@ createUrlString = () => {
     defaultZoom={this.props.zoom}
   >
   <Marker
+    lat={32.7111151}
+    lng={-117.1558408}
+    text={'Nektar'}
+  />
+  <Marker
     lat={32.7092125}
     lng={-117.1580465}
     text={'Bubs'}
+  />
+  <Marker
+    lat={32.708518}
+    lng={-117.159429}
+    text={'Donovans'}
   />
 
   </GoogleMapReact>

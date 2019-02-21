@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import {BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import {Table, Icon, Button, Col, Row, Input} from 'react-materialize'
+import {Table, Icon, Button, Col, Row, Input, Footer} from 'react-materialize'
 import moment from 'moment'
 
 
@@ -57,7 +57,6 @@ getBookings = () => {
           })}
           </tbody>
         </Table>
-
       </div>
     )
   }

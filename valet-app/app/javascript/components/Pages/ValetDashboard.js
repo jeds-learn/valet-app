@@ -1,3 +1,4 @@
+
 //For Dan and Enrique to Create
 import React from "react"
 import PropTypes from "prop-types"
@@ -71,6 +72,7 @@ class ValetDashboard extends React.Component {
       <div className="container">
         <h1>Valet Dashboard</h1>
 
+
         <div>
           <h3>Recent Orders</h3>
         </div>
@@ -88,7 +90,6 @@ class ValetDashboard extends React.Component {
               <th data-field="Details"></th>
             </tr>
           </thead>
-
           <tbody>
             <tr >
               <td >2:30PM</td>
@@ -175,10 +176,6 @@ class ValetDashboard extends React.Component {
             </div>
           </Col>
         </Row>
-
-
-
-
       </div>
     )
   }

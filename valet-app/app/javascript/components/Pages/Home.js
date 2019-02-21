@@ -39,15 +39,15 @@ class Home extends React.Component {
             </div>
           </div>
         </section>*/}
-        <section class="container section" id="services">
-          <div class="row">
-            <div class="col s12 l4">
-              <h2 class="indigo-text text-darken-4">What we do:</h2>
+        <section className="container section" id="services">
+          <div className="row">
+            <div className="col s12 l4">
+              <h2 className="indigo-text text-darken-4">What we do:</h2>
               <p>No more waiting out in the cold or rain ever again!</p>
               <p>Save time and go about your business.Go places!</p>
             </div>
-            <div class="col s12 l6 offset-12">
-            <Tabs classname='tab-demo z-depth-1'>
+            <div className="col s12 l6 offset-12">
+            <Tabs className='tab-demo z-depth-1'>
               <Tab id= "customer" title="Customer" active>
                 <h3>CUSTOMER</h3>
                 <p>Never be late again!</p>

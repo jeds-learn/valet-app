@@ -108,7 +108,6 @@ calculateTotal = (price, tip) =>{
 
   render () {
     let {booking, unEditable} = this.state
-    console.log("details",this.props);
     return (
       <div className="container">
       <h4>Booking Details</h4>

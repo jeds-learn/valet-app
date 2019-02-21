@@ -252,14 +252,6 @@
     top: 0;
   }
 
-  .reaper-image{
-    padding-top: 50px;
-  }
-
-  .reaper-text{
-    font-size: 200%;
-  }
-
   .nav-padding{
     padding-left: 20px;
     background: blue-grey;
@@ -269,6 +261,15 @@
     text-align: center;
   }
 
-  .tabs .tab a {
-    color: #1a237e;
-}
+  .center{
+    display: flex;
+    justify-content: center;
+  }
+
+  .input-text{
+    padding-bottom: 3%;
+  }
+
+  .nav-pad{
+    padding-left: 1%;
+  }

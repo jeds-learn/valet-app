@@ -10,11 +10,8 @@ import OrderDetails from './Pages/OrderDetails'
 import AddVehicle from './Pages/AddVehicle'
 import ListOfValets from './Pages/ListOfValets'
 import NewOrder from './Pages/NewOrder'
+import ValetDashboard from './Pages/ValetDashboard'
 import Test from './Pages/Test'
-
-
-
-
 
 class User extends React.Component {
   render () {
@@ -28,6 +25,7 @@ class User extends React.Component {
               <Route path="/test" exact component={Test}/>
               <Route path="/user/list-of-orders/:order_id" exact component={OrderDetails}/>
               <Route path="/user/add-vehicle" exact component={AddVehicle}/>
+              <Route path="/user/valet-dashboard" exact component={ValetDashboard}/>
               <Route path="/list-of-valets" exact component={ListOfValets}/>
               <Route path="/user/list-of-orders" exact component={ListOfOrders}/>
               <Route component={PageNotFound}/>

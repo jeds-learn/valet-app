@@ -238,3 +238,29 @@
  .rdtTime td {
    cursor: default;
  }
+
+ .background-image{
+     background-size: cover;
+     background-position: center;
+     min-height: 1000px;
+     width: padding: 100%;
+   }
+
+  .sticky{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+  }
+
+  .reaper-image{
+    padding-top: 50px;
+  }
+
+  .reaper-text{
+    font-size: 200%;
+  }
+
+  .nav-padding{
+    padding-left: 20px;
+    background: blue-grey;
+  }

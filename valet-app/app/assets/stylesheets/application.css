@@ -58,6 +58,7 @@
  .rdtPicker th {
    text-align: center;
    height: 28px;
+   padding: 10px 5px;
  }
  .rdtPicker td {
    cursor: pointer;

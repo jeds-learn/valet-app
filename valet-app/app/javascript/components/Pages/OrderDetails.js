@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
-import {Table, Icon, Button, Col, Row, Input, Modal, T, Card, CardTitle} from 'react-materialize'
+import {Table, Icon, Button, Col, Row, Input, Modal, T, Card, CardTitle, ProgressBar} from 'react-materialize'
 import moment from 'moment'
 import DateTime from 'react-datetime';
 
@@ -10,8 +10,17 @@ import CarCard from '../images/card-order-details.jpg';
 
 class OrderDetails extends React.Component {
   state={
-    unEditable: true,
-    booking: []
+    loading: 'true',
+    timesUpdated: false,
+    booking: [],
+    newStartTime: null,
+    newEndTime: null,
+    timeUpdateDetails:{
+      length_of_stay: null,
+      start_time: null,
+      end_time: null,
+      total_price: null,
+    }
   }
 
 componentDidMount = () => {
@@ -27,8 +36,11 @@ getBookingDetails = (order_id) => {
   fetch(url)
   .then((response) => response.json())
   .then((json) => {
-    this.setState({booking: json})
-    console.log(this.state);
+    this.setState({booking: json,
+                  loading: 'false',
+                  newStartTime: moment(json.start_time, 'YYYY-MM-DD HH:mm:SS'),
+                  newEndTime: moment(json.end_time, 'YYYY-MM-DD HH:mm:SS'),
+                })
   })
   .catch((e) =>{
     console.log("Error", e);
@@ -44,7 +56,6 @@ calculatePercentage = (amount, percentageIncrease) => {
 deleteBooking = (event) => {
     event.preventDefault()
     let url = `/orders/${event.currentTarget.id}.json`
-    console.log(url);
     //talk to the end point to get all dvds
     fetch(url, {
       method:"DELETE",
@@ -64,7 +75,6 @@ deleteBooking = (event) => {
 updateStatus = (event) => {
     event.preventDefault()
     let url = `/orders/${event.currentTarget.id}.json`
-    console.log(url);
     //talk to the end point to get all dvds
     fetch(url, {
       method:"PUT",
@@ -106,8 +116,54 @@ calculateTotal = (price, tip) =>{
   return parseFloat(price) + parseFloat(tip)
 }
 
+getNewStartTime = (timeObject) =>{
+  let {newStartTime, timesUpdated} = this.state
+  this.setState({newStartTime: timeObject, timesUpdated: true})
+}
+
+getNewEndTime = (timeObject) =>{
+  let {newEndtime, timesUpdated} = this.state
+  this.setState({newEndTime: timeObject, timesUpdated: true})
+}
+
+updateBookingTime = () => {
+  let timeUpdateDetails = this.state.timeUpdateDetails
+  let {newStartTime, newEndTime, timesUpdated}= this.state
+  let url = `/orders/${this.state.booking.id}.json`
+  if (timesUpdated){
+    let duration = moment.duration(newEndTime.diff(newStartTime))
+    let durationInHours = duration.asHours()
+    let costPerHour = this.state.booking.total_price / this.state.booking.length_of_stay
+    let cost = durationInHours * costPerHour
+    timeUpdateDetails.start_time = newStartTime.format('YYYY-MM-DD HH:mm:SS'),
+    timeUpdateDetails.end_time =  newEndTime.format('YYYY-MM-DD HH:mm:SS'),
+    timeUpdateDetails.total_price = cost,
+    timeUpdateDetails.length_of_stay = durationInHours
+    this.setState({timeUpdateDetails})
+  fetch(url, {
+    method:"PUT",
+    body: JSON.stringify({order: timeUpdateDetails}),
+    headers: {"Content-Type": "application/json"},
+  })
+    .then((response)=>{
+      console.log("start",response);
+      this.getBookingDetails(this.state.booking.id)
+    })
+  }else {
+    alert("You've made no changes to your times")
+  }
+}
+
   render () {
-    let {booking, unEditable} = this.state
+    let {booking, loading} = this.state
+    if (loading === 'true') {
+      return <Row>
+              <Col s={12}>
+                <ProgressBar />
+              </Col>
+            </Row>
+    }
+
     return (
       <div className="container">
       <h4>Booking Details</h4>
@@ -137,22 +193,28 @@ calculateTotal = (price, tip) =>{
 
     <div>
       <Modal
-      fixedFooter
-        actions={<div>
+        fixedFooter
+          actions={<div>
                   <Button flat modal="close" waves="light">Dismiss</Button>
+<<<<<<< HEAD
                   <Button id={booking.id} onClick={this.updateTimes} modal="close" waves="light" className="deep-purple lighten-2"><Icon left>schedule</Icon>Update Times</Button>
                   </div>
+=======
+                  <Button onClick={this.updateBookingTime} id={booking.id} modal="close" waves="light" className="deep-purple lighten-2"><Icon left>schedule</Icon>Update Times</Button>
+                    </div>
+>>>>>>> master
                   }
-                  id='times' header='Update Times'>Are you sure you want to cancel you order for {booking.valet_company_name}?
+                  id='times' header='Update Times'>Please select new times to change your booking at {booking.valet_company_name}
+                  <hr></hr>
                   <Row>
-                    <Icon left>access_alarm</Icon><DateTime className="col s5" defaultValue={"Drop Off Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getStartTime} name="start-date" />
-                    <Icon left>access_alarm</Icon><DateTime className="col s5" defaultValue={"Collection Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getEndTime} name="end-date" />
+                    <Icon left>access_alarm</Icon><DateTime className="col s5" id="start" defaultValue={moment(booking.start_time, 'YYYY-MM-DD HH:mm:SS')} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getNewStartTime} name="start-date" />
+                    <Icon left>access_alarm</Icon><DateTime className="col s5" defaultValue={moment(booking.end_time, 'YYYY-MM-DD HH:mm:SS')} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getNewEndTime} name="end-date" />
                   </Row>
       </Modal>
       <Modal
         actions={<div>
                   <Button flat modal="close" waves="light">Dismiss</Button>
-                  <Button id={booking.id} onClick={this.deleteBooking} modal="close" waves="light" className="red lighten-2"><Icon left>delete</Icon>Cancel</Button>
+                  <Button id={booking.id} onClick={this.deleteBooking} modal="close" waves="light" className="red lighten-2"><Icon left>delete</Icon>Cancel Booking</Button>
                     </div>
                   }
                   id='cancel' header='Cancel Booking'>Are you sure you want to cancel you order for {booking.valet_company_name}?</Modal>
@@ -163,7 +225,7 @@ calculateTotal = (price, tip) =>{
                   <Col s={3} ><Button onClick={this.tip} value='0.18'modal="close" waves="light" className="blue lighten-2">${this.calculatePercentage(booking.total_price, 0.18)}</Button></Col>
                   <Col s={3} ><Button onClick={this.tip} value='0.15'modal="close" waves="light" className="blue lighten-2">${this.calculatePercentage(booking.total_price, 0.15)}</Button></Col>
                   <Col s={3} ><Button flat modal="close" waves="light">Dismiss</Button></Col>
-                  </Row>
+          </Row>
                 </div>
                   }
                   id='tip' header='Add Tip to Booking'>How much would you like to tip {booking.valet_company_name}?

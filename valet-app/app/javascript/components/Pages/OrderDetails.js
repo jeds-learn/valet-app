@@ -196,8 +196,13 @@ updateBookingTime = () => {
         fixedFooter
           actions={<div>
                   <Button flat modal="close" waves="light">Dismiss</Button>
+<<<<<<< HEAD
+                  <Button id={booking.id} onClick={this.updateTimes} modal="close" waves="light" className="deep-purple lighten-2"><Icon left>schedule</Icon>Update Times</Button>
+                  </div>
+=======
                   <Button onClick={this.updateBookingTime} id={booking.id} modal="close" waves="light" className="deep-purple lighten-2"><Icon left>schedule</Icon>Update Times</Button>
                     </div>
+>>>>>>> master
                   }
                   id='times' header='Update Times'>Please select new times to change your booking at {booking.valet_company_name}
                   <hr></hr>

@@ -253,15 +253,24 @@
     top: 0;
   }
 
-  .reaper-image{
-    padding-top: 50px;
-  }
-
-  .reaper-text{
-    font-size: 200%;
-  }
-
   .nav-padding{
     padding-left: 20px;
     background: blue-grey;
+  }
+
+  .error-404{
+    text-align: center;
+  }
+
+  .center{
+    display: flex;
+    justify-content: center;
+  }
+
+  .input-text{
+    padding-bottom: 3%;
+  }
+
+  .nav-pad{
+    padding-left: 1%;
   }

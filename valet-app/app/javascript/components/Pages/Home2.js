@@ -21,7 +21,7 @@ class Home extends React.Component {
               <p>No more waiting out in the cold or rain ever again!</p>
               <p>Save time and go about your business.Go places!</p>
             </div>
-            <div className="col s12 l3 offset-l1">
+            {/*<div className="col s12 l3 offset-l1">
               <Tabs>
                   <Tab title="Customer" active>
                     <h5 className='indigo-text text-darken-4'>CUSTOMER</h5>
@@ -32,7 +32,32 @@ class Home extends React.Component {
                     <p>Never lose track of your cars! Full customer satisfaction!</p>
                   </Tab>
                 </Tabs>
-                </div>
+                </div>*/}
+                <div className="col s12 l3 offset-l1">
+                  <div className="row">
+                    <div className="col s12">
+                      <ul className="tabs">
+                        <li className="tab col">
+                          <a href="#tab_00" className="active">Customer</a>
+                        </li>
+                        <li className="tab col">
+                          <a href="#tab_01">Valet</a>
+                        </li>
+                        <div className="indicator" sytle="right:30px; left: 0px;"></div>
+                      </ul>
+                    </div>
+
+                    <div id="tab_00" className="col s12 active" style="display: block;">
+                      <h5 className="indigo-text text-darken-4">CUSTOMER</h5>
+                      <p>Never be late again!</p>
+                    </div>
+                    <div id="tab_01" className="col s12" style="display: none;">
+                      <h5 className="indigo-text text-darken-4">VALET</h5>
+                      <p>Never lose track of your cars!</p>
+                      <p>Ensure full customer satisfaction!</p>
+                    </div>
+                 </div>
+               </div>
               </div>
         </section>
 

@@ -141,14 +141,14 @@ calculateTotal = (price, tip) =>{
         actions={<div>
                   <Button flat modal="close" waves="light">Dismiss</Button>
                   <Button id={booking.id} onClick={this.updateTimes} modal="close" waves="light" className="deep-purple lighten-2"><Icon left>schedule</Icon>Update Times</Button>
-                    </div>
+                  </div>
                   }
                   id='times' header='Update Times'>Are you sure you want to cancel you order for {booking.valet_company_name}?
                   <Row>
                     <Icon left>access_alarm</Icon><DateTime className="col s5" defaultValue={"Drop Off Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getStartTime} name="start-date" />
                     <Icon left>access_alarm</Icon><DateTime className="col s5" defaultValue={"Collection Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getEndTime} name="end-date" />
                   </Row>
-                  </Modal>
+      </Modal>
       <Modal
         actions={<div>
                   <Button flat modal="close" waves="light">Dismiss</Button>

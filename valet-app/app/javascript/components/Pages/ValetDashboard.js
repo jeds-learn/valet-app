@@ -3,7 +3,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import {BrowserRouter as Router, Route } from 'react-router-dom'
-import {Table, Icon, Button, Col, Row, Input, CollapsibleItem, Collapsible, Modal} from 'react-materialize'
+import {Table, Icon, Button, Col, Row, Input, T, Card, CardTitle, CollapsibleItem, Collapsible, Modal} from 'react-materialize'
 import DateTime from 'react-datetime'
 import moment from 'moment'
 import { Chart } from "react-google-charts"
@@ -99,7 +99,14 @@ class ValetDashboard extends React.Component {
               <td >Honda</td>
               <td >Silver</td>
               <td >Pending</td>
-              <td><Button waves='light'>Details</Button></td>
+              <td>
+                <Modal
+                  header='Modal Header'
+                    trigger={<Button waves='light'>Details</Button>}>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                  </Modal>
+                </td>
             </tr>
             <tr >
               <td >2:30PM</td>
@@ -109,7 +116,7 @@ class ValetDashboard extends React.Component {
               <td >Honda</td>
               <td >Silver</td>
               <td >Pending</td>
-              <td><Button waves='light'>Details</Button></td>
+              <td><Button waves='light' >Details</Button></td>
             </tr>
             <tr >
               <td >2:30PM</td>
@@ -123,19 +130,6 @@ class ValetDashboard extends React.Component {
             </tr>
           </tbody>
         </Table>
-{/*        <Row>
-          <Col>
-          <Input label="filter bar" validate defaultValue='' />
-          </Col>
-        </Row>
-        <Row>
-          <Col s={4}>
-            <Icon left>access_alarm</Icon><DateTime className="col s5" defaultValue={"Drop Off Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getStartTime} name="start-date" />
-          </Col>
-          <Col s={4}>
-            <Icon left>access_alarm</Icon><DateTime className="col s5" defaultValue={"Collection Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getStartTime} name="start-date" />
-          </Col>
-        </Row>*/}
         <div>
           <h3>Overview: Order Status</h3>
         </div>

@@ -71,11 +71,17 @@ class ValetDashboard extends React.Component {
     return (
       <div className="container">
         <h1>Valet Dashboard</h1>
-
-
         <div>
           <h3>Recent Orders</h3>
         </div>
+
+        <Modal
+          id="details"
+          header='Modal Header'>
+          <p>
+           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed  eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </Modal>
 
         <Table striped bordered centered>
           <thead >
@@ -99,14 +105,7 @@ class ValetDashboard extends React.Component {
               <td >Honda</td>
               <td >Silver</td>
               <td >Pending</td>
-              <td>
-                <Modal
-                  header='Modal Header'
-                    trigger={<Button waves='light'>Details</Button>}>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                  </Modal>
-                </td>
+              <td><Button waves='light' onClick={()=> {$('#details').modal('open')}}>Details</Button></td>
             </tr>
             <tr >
               <td >2:30PM</td>
@@ -116,7 +115,7 @@ class ValetDashboard extends React.Component {
               <td >Honda</td>
               <td >Silver</td>
               <td >Pending</td>
-              <td><Button waves='light' >Details</Button></td>
+              <td><Button waves='light' onClick={()=> {$('#details').modal('open')}}>Details</Button></td>
             </tr>
             <tr >
               <td >2:30PM</td>
@@ -126,7 +125,7 @@ class ValetDashboard extends React.Component {
               <td >Honda</td>
               <td >Silver</td>
               <td >Pending</td>
-              <td><Button waves='light'>Details</Button></td>
+              <td><Button waves='light' onClick={()=> {$('#details').modal('open')}}>Details</Button></td>
             </tr>
           </tbody>
         </Table>

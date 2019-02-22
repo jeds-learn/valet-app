@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
-import {BrowserRouter as Router, Route } from 'react-router-dom'
-import {Icon, Button, Col, Row, Input} from 'react-materialize'
-
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
+import {Icon, Button, Col, Row, Input, Toast} from 'react-materialize'
+import 'babel-polyfill';
 
 class RegistrationUser extends React.Component {
     state ={
@@ -24,16 +24,14 @@ handleChangeCustomer = (event) => {
   this.setState({ customerAttributes:customerAttributes })
 }
 
-submitCustomerToDb = (event) => {
+submitCustomerToDb = async (event) => {
   event.preventDefault()
-  fetch('/users/create.json', {
+  let response = await fetch('/users/create.json', {
     method:"POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({user:this.state.customerAttributes})
   })
-  .then((response)=>{
-    this.setState({responseOk:true})
-  })
+  window.location='/user/add-vehicle'
 }
 
   render () {

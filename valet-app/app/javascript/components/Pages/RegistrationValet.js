@@ -47,19 +47,15 @@ getLongandLat = () => {
 
 }
 
-submitValetToDb = (event) => {
+submitValetToDb = async (event) => {
   event.preventDefault()
-  this.getLongandLat().then((valetAttributes) =>{
-    fetch('/users/create.json', {
+  let valetAttributes = await this.getLongandLat()
+  let response = await fetch('/users/create.json', {
       method:"POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({user:valetAttributes})
     })
-    .then((response)=>{
-      console.log("http response", response);
-      this.setState({responseOk:true})
-    })
-  })
+    window.location='/valet/valet-dashboard'
 }
 
   render () {

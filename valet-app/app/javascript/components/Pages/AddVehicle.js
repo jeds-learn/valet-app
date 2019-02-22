@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import {Redirect } from 'react-router-dom'
-import {Icon, Button, Col, Row, Input, Table} from 'react-materialize'
+import {Icon, Button, Col, Row, Input, Table, Toast} from 'react-materialize'
 
 class AddVehicle extends React.Component {
   state = {
@@ -19,6 +19,12 @@ componentDidMount(){
   this.getCars()
 }
 
+displayWarning = () => {
+  if (this.state.cars.length === 0) {
+    window.Materialize.toast('Please add a vehicle', 5000, 'red rounded')
+    console.log("called", this.state);
+  }
+}
 getCars = () => {
   //talk to the end point to get all dvds
     fetch('/vehicles.json')
@@ -28,6 +34,7 @@ getCars = () => {
     .then((json) => {
       this.setState({cars: json})
     })
+    .then(()=> this.displayWarning())
     .catch((e)=>{
       console.log("Error", e)
     })

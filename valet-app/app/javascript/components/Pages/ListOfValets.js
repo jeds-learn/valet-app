@@ -33,7 +33,6 @@ class ListOfValets extends React.Component {
     let obj = this.state.valets.find(object => object.id == event.currentTarget.id);
     center.lng = parseFloat(obj.long)
     center.lat = parseFloat(obj.lat)
-    console.log("center",center);
     this.setState({center})
   }
 
@@ -42,82 +41,78 @@ class ListOfValets extends React.Component {
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
-
     });
-    console.log("marker", marker);
 }
 
   render () {
-    console.log(this.state);
     return (
       <div className="container">
       <Row>
-      <Col s={3}>
+        <Col s={3}>
           <Input placeholder='Search' />
-          </Col>
-          </Row>
-          <div>
-            <Table hoverable>
-              <thead>
-                <tr>
-                  <th data-field="company_name">Company Name</th>
-                  <th data-field="address">Address</th>
-                  <th data-field="city">City</th>
-                  <th data-field="state">State</th>
-                  <th data-field="cost_per_hour">Cost/Hour</th>
-                  <th data-field="button"></th>
-                </tr>
-              </thead>
-              <tbody>
-              {this.state.valets.map((valet, index) => {
-                return(
-                  <tr key={index} id={valet.id} onClick={this.hello}>
-                  <td>{valet.company_name}</td>
-                  <td>{valet.address}</td>
-                  <td>{valet.city}</td>
-                  <td>{valet.state}</td>
-                  <td>${valet.cost_per_hour}</td>
-                  <td><Link to={`/user/new-order/${valet.id}`}><Button waves='light'>Book</Button></Link></td>
-                  </tr>
-                )
-              })}
-              </tbody>
-            </Table>
-          </div>
-          <div>
-          <Map google={this.props.google}
-              style={{width: '70%', height: '50%', position: 'relative'}}
-              className={'map'}
-              zoom={15}
-              initialCenter={{
-             lat: 32.715024,
-             lng: -117.147639
-            }}
-            >
+        </Col>
+      </Row>
+      <div>
+        <Table hoverable>
+          <thead>
+            <tr>
+              <th data-field="company_name">Company Name</th>
+              <th data-field="address">Address</th>
+              <th data-field="city">City</th>
+              <th data-field="state">State</th>
+              <th data-field="cost_per_hour">Cost/Hour</th>
+              <th data-field="button"></th>
+            </tr>
+          </thead>
+          <tbody>
+          {this.state.valets.map((valet, index) => {
+            return(
+              <tr key={index} id={valet.id} onClick={this.hello}>
+              <td>{valet.company_name}</td>
+              <td>{valet.address}</td>
+              <td>{valet.city}</td>
+              <td>{valet.state}</td>
+              <td>${valet.cost_per_hour}</td>
+              <td><Link to={`/user/new-order/${valet.id}`}><Button waves='light'>Book</Button></Link></td>
+              </tr>
+            )
+          })}
+          </tbody>
+        </Table>
+      </div>
+      <div>
+        <Map google={this.props.google}
+            style={{width: '70%', height: '50%', position: 'relative'}}
+            className={'map'}
+            zoom={15}
+            initialCenter={{
+              lat: 32.715024,
+              lng: -117.147639
+            }}>
             {this.state.valets.map((valet, index) => {
-                          return(
-                            <Marker
-                              key={index}
-                              onClick={this.onMarkerClick}
-                              title={valet.company_name}
-                              name={valet.company_name}
-                              position={{lat: valet.lat, lng: valet.long}}
-                              />
-                          )
-                        })}
-            <InfoWindow
-              marker={this.state.activeMarker}
-              visible={this.state.showingInfoWindow}>
-                <div>
-                  <h6>{this.state.selectedPlace.name}</h6>
-                </div>
-            </InfoWindow>
-          </Map>
-          </div>
-        </div>
-    )
-  }
+          return(
+          <Marker
+            key={index}
+            onClick={this.onMarkerClick}
+            title={valet.company_name}
+            name={valet.company_name}
+            position={{lat: valet.lat, lng: valet.long}}
+            />
+            )
+            })}
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}>
+              <div>
+                <h6>{this.state.selectedPlace.name}</h6>
+              </div>
+          </InfoWindow>
+        </Map>
+      </div>
+    </div>
+  )
+}
 }
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyCMQgVmwu-p2ewvYsQvoUDiWwXOYU6N8cI'
+apiKey: 'AIzaSyCMQgVmwu-p2ewvYsQvoUDiWwXOYU6N8cI'
 })(ListOfValets);

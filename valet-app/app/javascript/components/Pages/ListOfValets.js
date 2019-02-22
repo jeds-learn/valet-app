@@ -28,14 +28,6 @@ class ListOfValets extends React.Component {
       })
   }
 
-  // hello =(event) => {
-  //   let center = this.state.center
-  //   let obj = this.state.valets.find(object => object.id == event.currentTarget.id);
-  //   center.lng = parseFloat(obj.long)
-  //   center.lat = parseFloat(obj.lat)
-  //   this.setState({center})
-  // }
-
   onMarkerClick = (props, marker, e) => {
     this.setState({
       selectedPlace: props,

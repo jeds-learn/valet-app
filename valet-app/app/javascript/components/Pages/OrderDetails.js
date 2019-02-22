@@ -149,18 +149,16 @@ updateBookingTime = () => {
       console.log("start",response);
       this.getBookingDetails(this.state.booking.id)
     })
-}else {
-alert("You've made no changes to your times")
-}
+  }else {
+    alert("You've made no changes to your times")
+  }
 }
 
   render () {
-    console.log("state", this.state);
     let {booking, loading} = this.state
-
     if (loading === 'true') {
       return <Row>
-              <Col s={4}>
+              <Col s={12}>
                 <ProgressBar />
               </Col>
             </Row>
@@ -201,7 +199,8 @@ alert("You've made no changes to your times")
                   <Button onClick={this.updateBookingTime} id={booking.id} modal="close" waves="light" className="deep-purple lighten-2"><Icon left>schedule</Icon>Update Times</Button>
                     </div>
                   }
-                  id='times' header='Update Times'> {booking.valet_company_name}?
+                  id='times' header='Update Times'>Please select new times to change your booking at {booking.valet_company_name}
+                  <hr></hr>
                   <Row>
                     <Icon left>access_alarm</Icon><DateTime className="col s5" id="start" defaultValue={moment(booking.start_time, 'YYYY-MM-DD HH:mm:SS')} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getNewStartTime} name="start-date" />
                     <Icon left>access_alarm</Icon><DateTime className="col s5" defaultValue={moment(booking.end_time, 'YYYY-MM-DD HH:mm:SS')} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getNewEndTime} name="end-date" />
@@ -210,7 +209,7 @@ alert("You've made no changes to your times")
       <Modal
         actions={<div>
                   <Button flat modal="close" waves="light">Dismiss</Button>
-                  <Button id={booking.id} onClick={this.deleteBooking} modal="close" waves="light" className="red lighten-2"><Icon left>delete</Icon>Cancel</Button>
+                  <Button id={booking.id} onClick={this.deleteBooking} modal="close" waves="light" className="red lighten-2"><Icon left>delete</Icon>Cancel Booking</Button>
                     </div>
                   }
                   id='cancel' header='Cancel Booking'>Are you sure you want to cancel you order for {booking.valet_company_name}?</Modal>

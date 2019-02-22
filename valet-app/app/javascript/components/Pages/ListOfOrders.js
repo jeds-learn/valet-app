@@ -31,7 +31,7 @@ getBookings = () => {
       <div className="container">
         <h1>My Bookings</h1>
 
-        <Table striped bordered centered>
+        <Table bordered centered hoverable>
           <thead >
             <tr >
               <th data-field="Date">Date</th>

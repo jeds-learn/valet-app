@@ -92,7 +92,7 @@ render() {
           </div>
           <Row>
           <h4 className="right-align">Your Vehicles</h4>
-          <Table striped bordered>
+          <Table bordered centered hoverable>
             <thead>
               <tr>
                 <th>Make</th>

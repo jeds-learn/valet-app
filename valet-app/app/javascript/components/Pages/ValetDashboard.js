@@ -74,24 +74,24 @@ class ValetDashboard extends React.Component {
         <div>
           <h3>Recent Orders</h3>
         </div>
-
-        <Modal
+        <div>
+        <Modal className='modal-class'
           id="details"
-          header='Vehicle Status Update '
+          header='Vehicle Status Update'
           actions={
-            <div className="container">
+            <div>
               <Row>
                 <Col s={2} offset="s2">
-                  <Button floating flat modal="close" waves="light" icon='thumb_up' tooltip="Arrived" className='deep-purple lighten-2' ></Button>
+                  <Button floating flat modal="close" waves="light" icon='thumb_up' tooltip="Client Arrived" className='deep-purple lighten-2 ' ></Button>
                 </Col>
                 <Col s={2}>
-                  <Button floating flat modal="close" waves="light" icon='local_parking' tooltip="Parked" className='blue lighten-2'></Button>
+                  <Button floating flat modal="close" waves="light" icon='local_parking' tooltip="Car Parked" className='blue lighten-2'></Button>
                 </Col>
                 <Col s={2}>
-                  <Button floating flat modal="close" waves="light" icon='time_to_leave' tooltip="Ready" className='green lighten-2'></Button>
+                  <Button floating flat modal="close" waves="light" icon='time_to_leave' tooltip="Ready for Pick-up" className='green lighten-2'></Button>
                 </Col>
                 <Col s={2}>
-                  <Button floating flat modal="close" waves="light" icon='done' tooltip="done" className='red lighten-2'></Button>
+                  <Button floating flat modal="close" waves="light" icon='done' tooltip="Order Complete" className='red lighten-2'></Button>
                 </Col>
               </Row>
             </div>
@@ -99,7 +99,7 @@ class ValetDashboard extends React.Component {
           <p>
            Please update vehicle status:
           </p>
-        </Modal>
+        </Modal></div>
 
         <Table striped bordered centered>
           <thead >

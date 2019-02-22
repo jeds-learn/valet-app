@@ -77,9 +77,27 @@ class ValetDashboard extends React.Component {
 
         <Modal
           id="details"
-          header='Modal Header'>
+          header='Vehicle Status Update '
+          actions={
+            <div className="container">
+              <Row>
+                <Col s={2} offset="s2">
+                  <Button floating flat modal="close" waves="light" icon='thumb_up' tooltip="Arrived" className='deep-purple lighten-2' ></Button>
+                </Col>
+                <Col s={2}>
+                  <Button floating flat modal="close" waves="light" icon='local_parking' tooltip="Parked" className='blue lighten-2'></Button>
+                </Col>
+                <Col s={2}>
+                  <Button floating flat modal="close" waves="light" icon='time_to_leave' tooltip="Ready" className='green lighten-2'></Button>
+                </Col>
+                <Col s={2}>
+                  <Button floating flat modal="close" waves="light" icon='done' tooltip="done" className='red lighten-2'></Button>
+                </Col>
+              </Row>
+            </div>
+          }>
           <p>
-           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed  eiusmod tempor incididunt ut labore et dolore magna aliqua.
+           Please update vehicle status:
           </p>
         </Modal>
 

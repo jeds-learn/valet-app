@@ -23,8 +23,7 @@ class NavigationBar extends React.Component {
       return(
         <React.Fragment>
           <Navbar className="blue-grey nav-pad" fixed brand='Valet Service' right>
-          <NavItem>Dashboard</NavItem>
-          <NavItem href='/'>View Jobs</NavItem>
+          <NavItem href='/valet/valet-dashboard'>Dashboard</NavItem>
           <NavItem href='/users/sign_out'>Sign Out</NavItem>
           </Navbar>
         </React.Fragment>

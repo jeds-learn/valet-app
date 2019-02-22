@@ -274,3 +274,13 @@
   .nav-pad{
     padding-left: 1%;
   }
+
+  .btn-padd{
+    position: relative;
+    bottom: 5%;
+    border: solid;
+  }
+
+  .modal-class{
+    height: 250px;
+  }

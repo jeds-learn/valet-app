@@ -2,33 +2,16 @@ import React from "react"
 import PropTypes from "prop-types"
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
 import {Row, Col, Table, Button, Input, Icon} from 'react-materialize'
-import GoogleMapReact from 'google-map-react';
-
-
-const Marker = ({ text }) => (
-  <div style={{
-    color: 'white',
-    background: '#ee6e73',
-    padding: '5px 5px',
-    display: 'inline-flex',
-    textAlign: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-    // borderRadius: '100%',
-    transform: 'translate(-50%, -50%)'
-  }}>
-    {text}
-  </div>
-)
+import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 class ListOfValets extends React.Component {
   state = {
     valets:[],
-    center: {
-      lat: 32.715024,
-      lng: -117.147639
-    },
-    zoom: 15
+    showingInfoWindow: true,
+    activeMarker: {},
+    selectedPlace: {},
+    lat: 32.715024,
+    lng: -117.147639
   }
 
   componentDidMount(){
@@ -53,6 +36,16 @@ class ListOfValets extends React.Component {
     console.log("center",center);
     this.setState({center})
   }
+
+  onMarkerClick = (props, marker, e) => {
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+
+    });
+    console.log("marker", marker);
+}
 
   render () {
     console.log(this.state);
@@ -91,27 +84,40 @@ class ListOfValets extends React.Component {
               </tbody>
             </Table>
           </div>
-          <div style={{ height: '50vh', width: '100%' }}>
-            <GoogleMapReact
-              bootstrapURLKeys={{ key: 'AIzaSyCMQgVmwu-p2ewvYsQvoUDiWwXOYU6N8cI' }}
-              defaultCenter={this.state.center}
-              defaultZoom={this.state.zoom}
+          <div>
+          <Map google={this.props.google}
+              style={{width: '70%', height: '50%', position: 'relative'}}
+              className={'map'}
+              zoom={15}
+              initialCenter={{
+             lat: 32.715024,
+             lng: -117.147639
+            }}
             >
             {this.state.valets.map((valet, index) => {
-              return(
-                <Marker
-                  key={index}
-                  lat={valet.lat}
-                  lng={valet.long}
-                  text={valet.company_name}
-                />
-              )
-            })}
-            </GoogleMapReact>
+                          return(
+                            <Marker
+                              key={index}
+                              onClick={this.onMarkerClick}
+                              title={valet.company_name}
+                              name={valet.company_name}
+                              position={{lat: valet.lat, lng: valet.long}}
+                              />
+                          )
+                        })}
+            <InfoWindow
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}>
+                <div>
+                  <h6>{this.state.selectedPlace.name}</h6>
+                </div>
+            </InfoWindow>
+          </Map>
           </div>
         </div>
     )
   }
 }
-
-export default ListOfValets
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyCMQgVmwu-p2ewvYsQvoUDiWwXOYU6N8cI'
+})(ListOfValets);

@@ -67,6 +67,27 @@ class ValetDashboard extends React.Component {
     this.setState({start:date})
   }
 
+  changeStatus = (object) => {
+    let elem = document.getElementById("status")
+    console.log("style elem: ", elem.style.background);
+    // return elem.style.background = object
+  }
+
+  // tableStatus = (status) => {
+  //   console.log(working);
+  //   if (status === "order confirmed") {
+  //     return(
+  //       <React.Fragment>
+  //         <tr className="red lighten-2">
+  //         </tr>
+  //       </React.Fragment>
+  //     )
+  //   }
+  // }
+rowColorByStatus = (status) => {
+  if(status === 'order confirmed'){
+  return 'red'}
+}
   render () {
     return (
       <div className="container">
@@ -74,6 +95,13 @@ class ValetDashboard extends React.Component {
         <div>
           <h3>Recent Orders</h3>
         </div>
+        <div>
+          {this.changeStatus}
+        </div>
+{/*this div is meant to help change the background color
+        <div>
+          {this.tablestatus()}
+        </div>*/}
         <div>
         <Modal className='modal-class'
           id="details"
@@ -101,8 +129,8 @@ class ValetDashboard extends React.Component {
           </p>
         </Modal></div>
 
-        <Table striped bordered centered>
-          <thead >
+        <Table bordered striped centered responsive>
+          <thead>
             <tr >
               <th data-field="Arrival Time">Arrival Time</th>
               <th data-field="Departure Time">Departure Time</th>
@@ -115,35 +143,41 @@ class ValetDashboard extends React.Component {
             </tr>
           </thead>
           <tbody>
-            <tr >
-              <td >2:30PM</td>
-              <td >10:30PM</td>
-              <td >Daniel</td>
-              <td >slot A1</td>
-              <td >Honda</td>
-              <td >Silver</td>
-              <td >Pending</td>
-              <td><Button waves='light' onClick={()=> {$('#details').modal('open')}}>Details</Button></td>
+            <tr id="row" className="">
+              <td>2:30PM</td>
+              <td>10:30PM</td>
+              <td>Daniel</td>
+              <td>slot A1</td>
+              <td>Honda</td>
+              <td>Silver</td>
+              <td id="status">Pending</td>
+              <td>
+                <Button waves='light' onClick={()=> {$('#details').modal('open')}}>Details</Button>
+              </td>
             </tr>
-            <tr >
-              <td >2:30PM</td>
-              <td >10:30PM</td>
-              <td >Daniel</td>
-              <td >slot A1</td>
-              <td >Honda</td>
-              <td >Silver</td>
-              <td >Pending</td>
-              <td><Button waves='light' onClick={()=> {$('#details').modal('open')}}>Details</Button></td>
+            <tr className={this.rowColorByStatus('order confirmed')}>
+              <td>2:30PM</td>
+              <td>10:30PM</td>
+              <td>Daniel</td>
+              <td>slot A1</td>
+              <td>Honda</td>
+              <td>Silver</td>
+              <td>order confirmed</td>
+              <td>
+                <Button waves='light' onClick={()=> {$('#details').modal('open')}}>Details</Button>
+              </td>
             </tr>
-            <tr >
-              <td >2:30PM</td>
-              <td >10:30PM</td>
-              <td >Daniel</td>
-              <td >slot A1</td>
-              <td >Honda</td>
-              <td >Silver</td>
-              <td >Pending</td>
-              <td><Button waves='light' onClick={()=> {$('#details').modal('open')}}>Details</Button></td>
+            <tr className={this.rowColorByStatus('order confirmed')}>
+              <td>2:30PM</td>
+              <td>10:30PM</td>
+              <td>Daniel</td>
+              <td>slot A1</td>
+              <td>Honda</td>
+              <td>Silver</td>
+              <td>Pending</td>
+              <td>
+                <Button waves='light' onClick={()=> {$('#details').modal('open')}}>Details</Button>
+              </td>
             </tr>
           </tbody>
         </Table>

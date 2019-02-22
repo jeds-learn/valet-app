@@ -277,9 +277,13 @@
   .btn-padd{
     position: relative;
     bottom: 5%;
-    border: solid;
+
   }
 
   .modal-class{
     height: 250px;
   }
+
+.table-class{
+  background-color: red;
+}

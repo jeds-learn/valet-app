@@ -52,17 +52,17 @@ class Home extends React.Component {
                   <div className="input-field">
                     <i className="material-icons prefix">email</i>
                     <input type="email" id="email"/>
-                    <label for="email">Your Email</label>
+                    <label htmlFor="email">Your Email</label>
                   </div>
                   <div className="input-field">
                     <i className="material-icons prefix">phone</i>
                     <input type="text" id="phone" className="phone"/>
-                    <label for="phone">Your Phone Number</label>
+                    <label htmlFor="phone">Your Phone Number</label>
                   </div>
                   <div className="input-field">
                     <i className="material-icons prefix">message</i>
                     <textarea id="message" className="materialize-textarea"></textarea>
-                    <label for="message">Your Message</label>
+                    <label htmlFor="message">Your Message</label>
 
                   </div>
                   <div className="input-text">

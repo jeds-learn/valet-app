@@ -85,6 +85,11 @@ componentDidMount = () => {
     // let json = await response.json()
     // await this.setState({orders: json, loading: false})
   }
+  
+ rowColorByStatus = (status) => {
+  if(status === 'order confirmed'){
+  return 'red'}
+}
 
   render () {
     if (this.state.loading === true) {

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post "/users/create" => "users#create", :as => "create_user_page"
   get "/users/valets" => "users#get_valet", :as => "list_of_valets"
   get "/users/valet/:id" => "users#get_a_valet", :as => "a_of_valets"
+  get "/valet/orders" => "orders#index_of_valet_orders", :as => "valets_orders"
   get '*path', to: 'pages#main', constraints: ->(request){ request.format.html? }
   #Forces you to home page
   root to: 'pages#main'

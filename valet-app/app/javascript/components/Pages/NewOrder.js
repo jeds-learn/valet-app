@@ -143,8 +143,8 @@ onSubmitOrder = (event) => {
           <h4>{this.state.valetDetails.company_name}</h4>
         </div>
         <Row>
-          <Icon left>access_alarm</Icon><DateTime className="col s5" defaultValue={"Drop Off Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getStartTime} name="start-date" />
-          <Icon left>access_alarm</Icon><DateTime className="col s5" defaultValue={"Collection Time"} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getEndTime} name="end-date" />
+          <Icon left>access_alarm</Icon><DateTime className="col s5" defaultValue={moment({ hour:15})} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getStartTime} name="start-date" />
+          <Icon left>access_alarm</Icon><DateTime className="col s5" defaultValue={moment({ hour:16})} timeConstraints={ {minutes: { step: 15 }}} onChange={this.getEndTime} name="end-date" />
         </Row>
         <Row>
           <Icon left>directions_car</Icon>

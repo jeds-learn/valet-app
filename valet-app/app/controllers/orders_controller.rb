@@ -7,7 +7,12 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = current_user.orders.all
-  
+    p @orders
+  end
+
+  # GET /valet/orders
+  def index_of_valet_orders
+    @orders = Order.where(valet_id: current_user.id)
   end
 
   # GET /orders/1

@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import NavigationBar from './Elements/NavigationBar'
+
 import Home from './Pages/Home'
 import PageNotFound from './Pages/PageNotFound'
 import ListOfOrders from './Pages/ListOfOrders'
@@ -28,7 +29,7 @@ class User extends React.Component {
               <Route path="/valet/valet-dashboard" exact component={ValetDashboard}/>
               <Route path="/list-of-valets" exact component={ListOfValets}/>
               <Route path="/user/list-of-orders" exact component={ListOfOrders}/>
-              <Route component={PageNotFound}/>
+
             </Switch>
           </Router>
        </div>

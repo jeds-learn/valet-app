@@ -47,7 +47,7 @@ class NavigationBar extends React.Component {
     const {userDetails: {props}} = this.props
     return (
       <div>
-      {this.createNavBarItems(props)}
+        {this.createNavBarItems(props)}
       </div>
     )
   }

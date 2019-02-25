@@ -121,12 +121,6 @@ class ValetDashboard extends React.Component {
     }
   }
 
-  orderQueueTitle= () => {
-    let {orders} = this.state
-    if (orders.length > 0){
-      return <p className="flow-text">Collections Requested</p>
-    }
-  }
   render () {
     if (this.state.loading === true) {
       return <Row>
@@ -171,6 +165,13 @@ class ValetDashboard extends React.Component {
         </Table>
 
         <div>
+          {this.changeStatus}
+        </div>
+{/*this div is meant to help change the background color
+        <div>
+          {this.tablestatus()}
+        </div>*/}
+        <div>
         <Modal className='modal-class'
           id="details"
           header='Vehicle Status Update'
@@ -192,8 +193,9 @@ class ValetDashboard extends React.Component {
               </Row>
             </div>
           }>
+        </Modal>
+        </div>
 
-        </Modal></div>
         <div>
           <h3>Overview: Order Status</h3>
         </div>

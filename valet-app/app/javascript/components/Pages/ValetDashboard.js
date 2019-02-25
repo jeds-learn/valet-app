@@ -3,12 +3,12 @@
 import React from "react"
 import PropTypes from "prop-types"
 import {BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import {Table, Icon, Button, Col, Row, Input, T, Card, CardTitle, CollapsibleItem, Collapsible, Modal, ProgressBar} from 'react-materialize'
+import {Table, Icon, Button, Col, Row, Input, T, Card, CardTitle, CollapsibleItem, Collapsible, Modal, ProgressBar, Tag} from 'react-materialize'
 import DateTime from 'react-datetime'
 import moment from 'moment'
 import { Chart } from "react-google-charts"
 import 'babel-polyfill';
-
+import CollectionChips from '../Elements/CollectionChips'
 
 // variables for Orders Chart
 const data = [
@@ -57,16 +57,18 @@ class ValetDashboard extends React.Component {
     order_status: null,
   }
 
-componentDidMount = () => {
+  componentDidMount = () => {
   this.getOrders()
 }
 
   convertedTime = (time) => {
     return moment.utc(time).format('LT')
   }
+
   convertedDate = (time) => {
     return moment.utc(time).format('l')
   }
+
   getOrders = async () => {
     event.preventDefault()
     let response = await fetch('/valet/orders.json', {
@@ -83,12 +85,10 @@ componentDidMount = () => {
     $('#details').modal('open')
   }
 
-
   updateOrderStatus = async (event) => {
     event.preventDefault()
     let status = event.currentTarget.name
     let {lastButtonClicked} = this.state
-    console.log(status);
     let url = `/orders/${lastButtonClicked}.json`
     fetch(url, {
       method:"PUT",
@@ -104,6 +104,29 @@ componentDidMount = () => {
       })
   }
 
+  createChips = () => {
+    let {orders} = this.state
+    let filteredOrders = orders.filter(order => order.order_status === 'Pick Up Requested')
+    if (filteredOrders.length > 0){
+    return(
+      <React.Fragment>
+      <p className="flow-text">Collections Requested</p>
+        <Row>
+          <Col s={12}>
+          {filteredOrders.map((object, index) => <CollectionChips key={index} chipTitle={`${object.vehicle_make} - ${object.vehicle_license_plate}`}/> )}
+          </Col>
+        </Row>
+      </React.Fragment>
+      )
+    }
+  }
+
+  orderQueueTitle= () => {
+    let {orders} = this.state
+    if (orders.length > 0){
+      return <p className="flow-text">Collections Requested</p>
+    }
+  }
   render () {
     if (this.state.loading === true) {
       return <Row>
@@ -112,14 +135,12 @@ componentDidMount = () => {
               </Col>
             </Row>
     }
-    console.log(this.state);
     return (
       <div className="container">
         <h1>Valet Dashboard</h1>
-        <div>
-          <h3>Recent Orders</h3>
+        <div className="chips-collections-row">
+        {this.createChips()}
         </div>
-
         <Table striped bordered centered>
           <thead >
             <tr >

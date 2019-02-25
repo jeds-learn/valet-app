@@ -3,12 +3,12 @@
 import React from "react"
 import PropTypes from "prop-types"
 import {BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import {Table, Icon, Button, Col, Row, Input, T, Card, CardTitle, CollapsibleItem, Collapsible, Modal, ProgressBar} from 'react-materialize'
+import {Table, Icon, Button, Col, Row, Input, T, Card, CardTitle, CollapsibleItem, Collapsible, Modal, ProgressBar, Tag} from 'react-materialize'
 import DateTime from 'react-datetime'
 import moment from 'moment'
 import { Chart } from "react-google-charts"
 import 'babel-polyfill';
-
+import CollectionChips from '../Elements/CollectionChips'
 
 // variables for Orders Chart
 const data = [
@@ -52,19 +52,23 @@ const rows = [[1, 3], [2, 5], [3, 1]];
 class ValetDashboard extends React.Component {
   state ={
     loading: true,
-    orders: []
+    orders: [],
+    lastButtonClicked: null,
+    order_status: null,
   }
 
-componentDidMount = () => {
+  componentDidMount = () => {
   this.getOrders()
 }
 
   convertedTime = (time) => {
     return moment.utc(time).format('LT')
   }
+
   convertedDate = (time) => {
     return moment.utc(time).format('l')
   }
+
   getOrders = async () => {
     event.preventDefault()
     let response = await fetch('/valet/orders.json', {
@@ -75,43 +79,48 @@ componentDidMount = () => {
     await this.setState({orders: json, loading: false})
   }
 
+  captureOrderIdAndOpenModal = (event) => {
+    let {lastButtonClicked} = this.state
+    this.setState({lastButtonClicked: parseInt(event.target.id)})
+    $('#details').modal('open')
+  }
+
   updateOrderStatus = async (event) => {
     event.preventDefault()
-    console.log(event.currentTarget);
-    // let response = await fetch('/valet/orders.json', {
-    //   method:"GET",
-    //   headers: {"Content-Type": "application/json"},
-    // })
-    // let json = await response.json()
-    // await this.setState({orders: json, loading: false})
+    let status = event.currentTarget.name
+    let {lastButtonClicked} = this.state
+    let url = `/orders/${lastButtonClicked}.json`
+    fetch(url, {
+      method:"PUT",
+      body: JSON.stringify({order:{order_status: status}}),
+      headers: {"Content-Type": "application/json"},
+    })
+    .then(alert('The order has been updated'))
+      //when promise is fufilled parse to json
+      .then(this.getOrders())
+      //then set state of dvds to the json payload
+      .catch((e)=>{
+        console.log("Error", e)
+      })
   }
 
- rowColorByStatus = (status) => {
-  if(status === 'order confirmed'){
-  return 'red'}
-}
-
-  changeStatus = (object) => {
-    let elem = document.getElementById("status")
-    console.log("style elem: ", elem.style.background);
-    // return elem.style.background = object
+  createChips = () => {
+    let {orders} = this.state
+    let filteredOrders = orders.filter(order => order.order_status === 'Pick Up Requested')
+    if (filteredOrders.length > 0){
+    return(
+      <React.Fragment>
+      <p className="flow-text">Collections Requested</p>
+        <Row>
+          <Col s={12}>
+          {filteredOrders.map((object, index) => <CollectionChips key={index} chipTitle={`${object.vehicle_make} - ${object.vehicle_license_plate}`}/> )}
+          </Col>
+        </Row>
+      </React.Fragment>
+      )
+    }
   }
 
-  // tableStatus = (status) => {
-  //   console.log(working);
-  //   if (status === "order confirmed") {
-  //     return(
-  //       <React.Fragment>
-  //         <tr className="red lighten-2">
-  //         </tr>
-  //       </React.Fragment>
-  //     )
-  //   }
-  // }
-rowColorByStatus = (status) => {
-  if(status === 'order confirmed'){
-  return 'red'}
-}
   render () {
     if (this.state.loading === true) {
       return <Row>
@@ -120,14 +129,12 @@ rowColorByStatus = (status) => {
               </Col>
             </Row>
     }
-    console.log(this.props);
     return (
       <div className="container">
         <h1>Valet Dashboard</h1>
-        <div>
-          <h3>Recent Orders</h3>
+        <div className="chips-collections-row">
+        {this.createChips()}
         </div>
-
         <Table striped bordered centered>
           <thead >
             <tr >
@@ -150,7 +157,7 @@ rowColorByStatus = (status) => {
               <td>{order.vehicle_make}</td>
               <td>{order.vehicle_license_plate}</td>
               <td>{order.order_status}</td>
-              <td><Button id={order.id} onClick={() => {$('#details').modal('open')}} waves='light'>Update Status</Button></td>
+              <td><Button id={order.id} onClick={this.captureOrderIdAndOpenModal} waves='light'>Update Status</Button></td>
               </tr>
             )
           })}
@@ -172,16 +179,16 @@ rowColorByStatus = (status) => {
             <div>
               <Row>
                 <Col s={2} offset="s1">
-                  <Button floating flat modal="close" waves="light" icon='thumb_up' tooltip="Client Arrived" onClick={this.updateOrderStatus} className='deep-purple lighten-2 ' ></Button>
+                  <Button floating flat modal="close" waves="light" icon='thumb_up' name="Client Arrived" tooltip="Client Arrived" onClick={this.updateOrderStatus} className='deep-purple lighten-2 ' ></Button>
                 </Col>
                 <Col s={2}>
-                  <Button floating flat modal="close" waves="light" icon='local_parking' tooltip="Car Parked" className='blue lighten-2'></Button>
+                  <Button floating flat modal="close" waves="light" icon='local_parking' name="Car Parked" tooltip="Car Parked" onClick={this.updateOrderStatus} className='blue lighten-2'></Button>
                 </Col>
                 <Col s={2}>
-                  <Button floating flat modal="close" waves="light" icon='time_to_leave' tooltip="Ready for Pick-up" className='green lighten-2'></Button>
+                  <Button floating flat modal="close" waves="light" icon='time_to_leave' name="Ready To Drive Away" tooltip="Ready for Pick-up" onClick={this.updateOrderStatus} className='green lighten-2'></Button>
                 </Col>
                 <Col s={2}>
-                  <Button floating flat modal="close" waves="light" icon='done' tooltip="Order Complete" className='red lighten-2'></Button>
+                  <Button floating flat modal="close" waves="light" icon='done' name="Order Complete" tooltip="Order Complete" onClick={this.updateOrderStatus} className='red lighten-2'></Button>
                 </Col>
               </Row>
             </div>

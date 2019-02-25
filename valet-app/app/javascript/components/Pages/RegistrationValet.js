@@ -2,10 +2,11 @@ import React from "react"
 import PropTypes from "prop-types"
 import {BrowserRouter as Router, Route } from 'react-router-dom'
 import {Icon, Button, Col, Row, Input} from 'react-materialize'
-
+import states from '../Elements/FiftyStates.js'
 
 class RegistrationValet extends React.Component {
     state ={
+      states: [],
       valetAttributes:{
       is_valet: true,
       company_name: null,
@@ -24,6 +25,19 @@ class RegistrationValet extends React.Component {
       lat: null,
     }
   }
+
+componentDidMount = () => {
+  let {state} = this.state
+
+  this.createArrayOfStates(states)
+  this.setState({state: state})
+}
+
+createArrayOfStates = (array) => {
+  let {states} = this.state
+   let newArray = array.map(obj => `${obj.name} (${obj.abbreviation})`)
+   this.setState({states: newArray})
+}
 
 handleChange = (event) => {
   const { valetAttributes } = this.state
@@ -44,7 +58,6 @@ getLongandLat = () => {
     this.setState({valetAttributes})
     return valetAttributes
   })
-
 }
 
 submitValetToDb = async (event) => {
@@ -59,7 +72,7 @@ submitValetToDb = async (event) => {
 }
 
   render () {
-    console.log("state",this.state);
+    console.log("State status:  ", this.state);
     return (
       <div className="container">
         <div id="valet-form">
@@ -68,7 +81,12 @@ submitValetToDb = async (event) => {
               <Input s={12} onChange={this.handleChange} name="company_name" label="Company Name" />
               <Input s={12} onChange={this.handleChange} name="address" label="Address" />
               <Input s={4} onChange={this.handleChange} name="city" label="City" />
-              <Input s={4} onChange={this.handleChange} name="state" label="State" />
+              <Input s={4} type='select' onChange={this.handleChange} name="state" label="States" defaultValue='6'>
+                  {this.state.states.map((state, index) => {
+                    return(<option key={index} value={state}>{state}</option>
+                    )
+                  })}
+              </Input>
               <Input s={4} onChange={this.handleChange} name="zip" label="Zip Code" />
               <Input s={6} onChange={this.handleChange} name="email" label="Email" />
               <Input s={6} onChange={this.handleChange} name="phone" placeholder="+1" label="Phone Number" />

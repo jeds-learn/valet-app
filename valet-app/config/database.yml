@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: valet-app_production
-  username: valet-app_backend
+  username: jeds
   password: <%= ENV['VALET-APP_DATABASE_PASSWORD'] %>

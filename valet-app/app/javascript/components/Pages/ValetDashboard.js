@@ -108,7 +108,7 @@ class ValetDashboard extends React.Component {
     let {orders} = this.state
     let filteredOrders = orders.filter(order => order.order_status === 'Pick Up Requested')
     if (filteredOrders.length > 0){
-    return(
+      return(
       <React.Fragment>
       <p className="flow-text">Collections Requested</p>
         <Row>

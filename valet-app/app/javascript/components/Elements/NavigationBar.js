@@ -8,13 +8,20 @@ import Logo from '../../../assets/img/logo.png'
 
 class NavigationBar extends React.Component {
   createNavBarItems = (userDetails) => {
-    console.log(userDetails);
+    let divStyle = {textAlign:'left'}
+
+    let imageStyle = {float:'left',
+                      marginRight:'10px'}
+
     if (userDetails.logged_in === false){
       return(
         //If you are not signed in
         <React.Fragment>
-          <Navbar className="blue-grey nav-pad" fixed brand={<img height="90px" src={Logo}/>} right>
-          <NavItem href='/list-of-valets'>List of Valets</NavItem>
+        <Navbar className="blue-grey nav-pad" fixed brand={
+         <div>
+           <img style={imageStyle} src={Logo} alt="Image" height="85px" />Drive Away
+         </div>} right>          
+         <NavItem href='/list-of-valets'>List of Valets</NavItem>
           <NavItem href='/users/sign_in'>Sign In</NavItem>
           <NavItem href='/registration'>Sign Up</NavItem>
           </Navbar>
@@ -24,7 +31,13 @@ class NavigationBar extends React.Component {
     }else if (userDetails.logged_in && userDetails.is_valet) {
       return(
         <React.Fragment>
-          <Navbar className="blue-grey nav-pad" fixed brand={<img height="80px" src={Logo}/>} right>
+        {/*  */}
+         <Navbar className="blue-grey nav-pad" fixed brand={
+          <div>
+            <img style={imageStyle} src={Logo} alt="Image" height="85px" />Drive Away
+          </div>
+         }
+         right>
           <NavItem href='/valet/valet-dashboard'>Dashboard</NavItem>
           <NavItem href='/users/sign_out'>Sign Out</NavItem>
           </Navbar>
@@ -34,8 +47,13 @@ class NavigationBar extends React.Component {
     }else if (userDetails.logged_in && userDetails.is_valet === false){
       return(
       <React.Fragment>
-        <Navbar className="blue-grey nav-pad" fixed brand={<img height="90px" src={Logo}/>} right>
-        <NavItem href='/list-of-valets'>Create Booking</NavItem>
+      <Navbar className="blue-grey nav-pad" fixed brand={
+       <div>
+         <img style={imageStyle} src={Logo} alt="Image" height="85px" />Drive Away
+       </div>
+      }
+      right>
+      <NavItem href='/list-of-valets'>Create Booking</NavItem>
         <NavItem href='/user/add-vehicle'>My Vehicles</NavItem>
         <NavItem href='/user/list-of-orders'>View My Orders</NavItem>
         <NavItem href='/users/sign_out'>Sign Out</NavItem>

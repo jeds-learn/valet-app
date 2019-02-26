@@ -18,6 +18,14 @@
     "react_ujs": "^2.4.4"
   },
   "devDependencies": {
+    "jest": "23.6.0",
     "webpack-dev-server": "2.11.2"
-  }
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+  "setupTestFrameworkScriptFile": "app/javascript/__tests__/setup/setupEnzyme.js",
+  "testPathIgnorePatterns": ["app/javascript/__tests__/setup/", "config/webpack/test.js"]
+}
 }

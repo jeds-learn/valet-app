@@ -3,24 +3,25 @@ import PropTypes from "prop-types"
 import {BrowserRouter as Router, Route } from 'react-router-dom'
 import {Icon, Button, Col, Row, Input} from 'react-materialize'
 import states from '../Elements/FiftyStates.js'
+import * as yup from 'yup'
 
 class RegistrationValet extends React.Component {
     state ={
       states: [],
       valetAttributes:{
       is_valet: true,
-      company_name: null,
-      address: null,
-      city: null,
-      state: null,
-      zip: null,
-      email: null,
-      phone: null,
-      opening_time: null,
-      closing_time: null,
-      cost_per_hour: null,
-      password: null,
-      password_confirmation: null,
+      company_name: "",
+      address: "",
+      city: "",
+      state: "",
+      zip: "",
+      email: "",
+      phone: "",
+      opening_time: "",
+      closing_time: "",
+      cost_per_hour: 0,
+      password: "",
+      password_confirmation: "",
       long: null,
       lat: null,
     }
@@ -28,7 +29,6 @@ class RegistrationValet extends React.Component {
 
 componentDidMount = () => {
   let {state} = this.state
-
   this.createArrayOfStates(states)
   this.setState({state: state})
 }
@@ -60,28 +60,47 @@ getLongandLat = () => {
   })
 }
 
-submitValetToDb = async (event) => {
-  event.preventDefault()
-  let valetAttributes = await this.getLongandLat()
-  let response = await fetch('/users/create.json', {
+schema = yup.object().shape({
+  company_name: yup.string().required("Please enter a Company Name"),
+  address: yup.string().required("Please enter an address"),
+  city: yup.string().required("Please enter an address"),
+  state: yup.string().required("Please select a state"),
+  zip: yup.string().required("Please enter a zip code").length(5, "The zipcode must be 5 numbers long").matches(/\d/, "Zip code must be digits only"),
+  email: yup.string().required("Please enter an email"),
+  phone: yup.string("Please enter a phone number").required("Please enter a phone number").max(11,"Your cell number cannot exceed 11 characters").min(10, "Your cell number must be a minimum of 10 characters"),
+  opening_time: yup.string().required("Please enter an opening time"),
+  closing_time: yup.string().required("Please enter an closing time"),
+  cost_per_hour: yup.string().required("Please enter a cost per hour"),
+  password: yup.string().required("Please enter a password").min(6, "Your password must contain a minimum of 6 characters"),
+  password_confirmation: yup.string().min(6, "Your password must contain a minimum of 6 characters").oneOf([yup.ref('password'), null], "Passwords don't match"),
+})
+
+validateAndsubmitValetToDb = async (event) => {
+  try {
+    event.preventDefault()
+    await this.schema.validate(this.state.valetAttributes)
+    const valetAttributes = await this.getLongandLat()
+    const result = await fetch('/users/create.json', {
       method:"POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({user:valetAttributes})
     })
     window.location='/valet/valet-dashboard'
+  } catch(error) {
+    window.Materialize.toast(error.errors, 2000, 'red rounded')
+  }
 }
 
   render () {
-    console.log("State status:  ", this.state);
     return (
       <div className="container">
         <div id="valet-form">
           <Row>
-            <form onSubmit={this.submitValetToDb}>
+            <form onSubmit={this.validateAndsubmitValetToDb}>
               <Input s={12} onChange={this.handleChange} name="company_name" label="Company Name" />
               <Input s={12} onChange={this.handleChange} name="address" label="Address" />
               <Input s={4} onChange={this.handleChange} name="city" label="City" />
-              <Input s={4} type='select' onChange={this.handleChange} name="state" label="States" defaultValue='6'>
+              <Input s={4} type='select' onChange={this.handleChange} name="state" label="States">
                   {this.state.states.map((state, index) => {
                     return(<option key={index} value={state}>{state}</option>
                     )

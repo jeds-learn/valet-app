@@ -5,14 +5,14 @@ import {Parallax, Col, Tabs, Tab, Row, Input} from 'react-materialize'
 
 
 //Images used for HomePage
-import SkyLineImage from '../../../assets/img/sdskyline3.jpg'
-import SkyLineImage2 from '../../../assets/img/sdskyline9.jpg'
+import Bridge from '../../../assets/img/bridge.png'
+import Marina from '../../../assets/img/marina.png'
 
 class Home extends React.Component {
   render () {
     return (
       <div>
-        <Parallax imageSrc={SkyLineImage}/>
+        <Parallax imageSrc={Bridge}/>
 
         <section className="container section" id="services">
           <div className="row">
@@ -39,7 +39,7 @@ class Home extends React.Component {
               </div>
         </section>
 
-          <Parallax imageSrc={SkyLineImage2}/>
+          <Parallax imageSrc={Marina}/>
 
           <section className="section container" id="contact">
             <div className="row">

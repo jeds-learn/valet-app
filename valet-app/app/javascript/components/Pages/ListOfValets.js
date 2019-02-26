@@ -39,11 +39,6 @@ class ListOfValets extends React.Component {
   render () {
     return (
       <div className="container">
-      <Row>
-        <Col s={3}>
-          <Input placeholder='Search' />
-        </Col>
-      </Row>
       <div>
         <Table bordered centered hoverable>
           <thead>

@@ -3,6 +3,8 @@ import PropTypes from "prop-types"
 import {Navbar, NavItem, Icon} from 'react-materialize'
 import {Link} from 'react-router-dom'
 
+import Logo from '../../../assets/img/logo.png'
+
 
 class NavigationBar extends React.Component {
   createNavBarItems = (userDetails) => {
@@ -11,7 +13,7 @@ class NavigationBar extends React.Component {
       return(
         //If you are not signed in
         <React.Fragment>
-          <Navbar className="blue-grey nav-pad" fixed brand='Valet Service' right>
+          <Navbar className="blue-grey nav-pad" fixed brand={<img height="90px" src={Logo}/>} right>
           <NavItem href='/list-of-valets'>List of Valets</NavItem>
           <NavItem href='/users/sign_in'>Sign In</NavItem>
           <NavItem href='/registration'>Sign Up</NavItem>
@@ -22,7 +24,7 @@ class NavigationBar extends React.Component {
     }else if (userDetails.logged_in && userDetails.is_valet) {
       return(
         <React.Fragment>
-          <Navbar className="blue-grey nav-pad" fixed brand='Valet Service' right>
+          <Navbar className="blue-grey nav-pad" fixed brand={<img height="80px" src={Logo}/>} right>
           <NavItem href='/valet/valet-dashboard'>Dashboard</NavItem>
           <NavItem href='/users/sign_out'>Sign Out</NavItem>
           </Navbar>
@@ -32,7 +34,7 @@ class NavigationBar extends React.Component {
     }else if (userDetails.logged_in && userDetails.is_valet === false){
       return(
       <React.Fragment>
-        <Navbar className="blue-grey nav-pad" fixed brand='Valet Service' right>
+        <Navbar className="blue-grey nav-pad" fixed brand={<img height="90px" src={Logo}/>} right>
         <NavItem href='/list-of-valets'>Create Booking</NavItem>
         <NavItem href='/user/add-vehicle'>My Vehicles</NavItem>
         <NavItem href='/user/list-of-orders'>View My Orders</NavItem>

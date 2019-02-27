@@ -16,38 +16,12 @@ const data = [
   ["Orders Pending", 11],
   ["Orders Completed", 2],
   ];
+
 const options = {
-  title: "All Orders",
+  title: "Orders Status for Today",
   pieHole: 0.4,
   is3D: false
   };
-
-// Variables for Revenues Chart
-const revData = [
-  ["Revenues Status", "Revenues"],
-  ["Revenues Pending", 11],
-  ["Revenues Collected", 2],
-  ];
-const revOptions = {
-  title: "Revenues",
-  pieHole: 0.4,
-  is3D: false
-  };
-
-// Variables for Activity Chart
-  const columns = [
-  {
-    label: "Time",
-    type: "number"
-  },
-  {
-    label: "Vehicles",
-    type: "number"
-  }
-];
-
-// first part of index refers to time, second part refers to number of vehicles.  ex: [1, 3] indicates that at 1 o'clock there will be 3 vehicles
-const rows = [[1, 3], [2, 5], [3, 1]];
 
 class ValetDashboard extends React.Component {
   state ={
@@ -55,10 +29,11 @@ class ValetDashboard extends React.Component {
     orders: [],
     lastButtonClicked: null,
     order_status: null,
+    todaysOrders: [],
   }
 
   componentDidMount = () => {
-  this.getOrders()
+    this.getOrders()
 }
 
   convertedTime = (time) => {
@@ -77,6 +52,7 @@ class ValetDashboard extends React.Component {
     })
     let json = await response.json()
     await this.setState({orders: json, loading: false})
+    await this.getTodaysOrders()
   }
 
   captureOrderIdAndOpenModal = (event) => {
@@ -104,6 +80,19 @@ class ValetDashboard extends React.Component {
       })
   }
 
+  isToday = (orderObj) => {
+    let orderDateAsMoment = moment(orderObj.start_time)
+    if (orderDateAsMoment.isSame(new Date(), "day")){
+      return orderObj
+    }
+  }
+
+  getTodaysOrders = async () => {
+    let {orders, todaysOrders, gotTodaysOrder} = this.state
+    let todaysOrdersArray = orders.filter(this.isToday)
+    this.setState({todaysOrders: todaysOrdersArray})
+  }
+
   createChips = () => {
     let {orders} = this.state
     let filteredOrders = orders.filter(order => order.order_status === 'Pick Up Requested')
@@ -121,7 +110,43 @@ class ValetDashboard extends React.Component {
     }
   }
 
+  todaysTotal = () => {
+    let {todaysOrders} = this.state
+    if (todaysOrders.length >0){
+    let todaysTotal = todaysOrders.map(item => item.total_price).reduce((prev, next) => prev + next);
+      return (<React.Fragment><p className='flow-text'>Today's Revenue</p>
+        <h3>${todaysTotal}</h3></React.Fragment>)
+    }else{
+      return <p className='flow-text'>No Orders Today ...</p>
+    }
+  }
+
+  totalOrders = () => {
+    let {todaysOrders} = this.state
+    return (<React.Fragment><p className='flow-text'>Total Jobs for Today</p>
+      <h3>{todaysOrders.length}</h3></React.Fragment>)
+  }
+
+pieChartData = () =>{
+  let {todaysOrders} = this.state
+  let [ordersComplete, ordersIncomplete] = [["Orders Completed"], ["Orders Pending"]]
+  let [ordersCompleteCount, ordersIncompleteCount ] = [0,0]
+  let data = [["Order Status", "Number of orders"]]
+  for (let order of todaysOrders){
+    if (order.order_status === "Order Complete"){
+      ordersCompleteCount++
+    }else{
+      ordersIncompleteCount++
+    }
+  }
+  ordersComplete.push(ordersCompleteCount)
+  ordersIncomplete.push(ordersIncompleteCount)
+  data.push(ordersComplete,ordersIncomplete)
+  return data
+}
+
   render () {
+    console.log(this.state);
     if (this.state.loading === true) {
       return <Row>
               <Col s={12}>
@@ -129,6 +154,7 @@ class ValetDashboard extends React.Component {
               </Col>
             </Row>
     }
+
     return (
       <div className="container">
         <h1>Valet Dashboard</h1>
@@ -151,7 +177,7 @@ class ValetDashboard extends React.Component {
           {this.state.orders.map((order, index) => {
             return(
               <tr key={index} id={order.id}>
-              <td>{this.convertedDate(order.start_date)}</td>
+              <td>{this.convertedDate(order.start_time)}</td>
               <td>{this.convertedTime(order.start_time)}</td>
               <td>{order.customer_first_name} {order.customer_last_name}</td>
               <td>{order.vehicle_make}</td>
@@ -189,34 +215,21 @@ class ValetDashboard extends React.Component {
           }>
         </Modal>
         </div>
-
-        <Row>
-        <Col s={12}>
-        <Card children={
-          <Chart
-            chartType="AreaChart"
-            width="100%"
-            height="400px"
-            legendToggle
-            rows={rows}
-            columns={columns}
-          />}/>
-          </Col>
-        </Row>
-        <Row>
+        <hr></hr>
+          <Row>
           <Col s={6}>
           <Card children={<Chart
             chartType="PieChart"
             width="100%"
             height="300px"
-            data={data}
+            data={this.pieChartData()}
             options={options}
             legendToggle
           />}/>
           </Col>
           <Col s={6}>
-          <Card children={<h3>Today's Revenue</h3>,<h1>$176</h1>
-          }/>
+          <Card className='total-card' children={this.todaysTotal()}/>
+          <Card className='total-card' children={this.totalOrders()}/>
           </Col>
         </Row>
       </div>

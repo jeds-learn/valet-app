@@ -114,7 +114,7 @@ validateAndsubmitValetToDb = async (event) => {
               <Input s={4} onChange={this.handleChange} placeholder="$" name="cost_per_hour" label="Cost Per Hour" />
               <Input s={6} onChange={this.handleChange} name="password" label="Password" type="password"/>
               <Input s={6} onChange={this.handleChange} name="password_confirmation" label="Reconfirm Password" type="password"/>
-              <Button s={12}><Icon left>send</Icon>Register</Button>
+              <Button s={12}><Icon left>send</Icon><span id="register">Register</span></Button>
             </form>
           </Row>
         </div>

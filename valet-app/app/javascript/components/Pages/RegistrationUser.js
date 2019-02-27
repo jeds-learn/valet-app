@@ -47,7 +47,7 @@ submitCustomerToDb = async (event) => {
               <Input s={6} onChange={this.handleChangeCustomer} name="phone" label="Cell Number" />
               <Input s={6} onChange={this.handleChangeCustomer} name="password" label="Password" type="password"/>
               <Input s={6} onChange={this.handleChangeCustomer} name="password_confirmation" label="Reconfirm Password" type="password"/>
-              <Button s={12}><Icon left>directions_car</Icon>Register</Button>
+              <Button id ="register" s={12}><Icon left>directions_car</Icon><span id="button_text">Register</span></Button>
             </form>
           </Row>
         </div>

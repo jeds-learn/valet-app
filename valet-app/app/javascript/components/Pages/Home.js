@@ -5,8 +5,8 @@ import {Parallax, Col, Tabs, Tab, Row, Input} from 'react-materialize'
 
 
 //Images used for HomePage
-import SkyLineImage from '../../../assets/img/sdskyline3.jpg'
-import SkyLineImage2 from '../../../assets/img/sdskyline9.jpg'
+import SkyLineImage from '../../images/sdskyline3.jpg'
+import SkyLineImage2 from '../../images/sdskyline9.jpg'
 
 class Home extends React.Component {
   render () {

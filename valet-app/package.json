@@ -1,6 +1,17 @@
 {
   "name": "valet-app",
   "private": true,
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "roots": [
+      "app/javascript/components"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "./fileMock.js"
+    }
+  },
   "dependencies": {
     "@rails/webpacker": "3.5",
     "babel-preset-react": "^6.24.1",
@@ -18,14 +29,9 @@
     "react_ujs": "^2.4.4"
   },
   "devDependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.10.0",
     "jest": "23.6.0",
     "webpack-dev-server": "2.11.2"
-  },
-  "scripts": {
-    "test": "jest"
-  },
-  "jest": {
-  "setupTestFrameworkScriptFile": "app/javascript/__tests__/setup/setupEnzyme.js",
-  "testPathIgnorePatterns": ["app/javascript/__tests__/setup/", "config/webpack/test.js"]
-}
+  }
 }

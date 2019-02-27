@@ -164,13 +164,7 @@ class ValetDashboard extends React.Component {
           </tbody>
         </Table>
 
-        <div>
-          {this.changeStatus}
-        </div>
-{/*this div is meant to help change the background color
-        <div>
-          {this.tablestatus()}
-        </div>*/}
+
         <div>
         <Modal className='modal-class'
           id="details"
@@ -196,11 +190,9 @@ class ValetDashboard extends React.Component {
         </Modal>
         </div>
 
-        <div>
-          <h3>Overview: Order Status</h3>
-        </div>
-
-        <div className="App">
+        <Row>
+        <Col s={12}>
+        <Card children={
           <Chart
             chartType="AreaChart"
             width="100%"
@@ -208,32 +200,23 @@ class ValetDashboard extends React.Component {
             legendToggle
             rows={rows}
             columns={columns}
-          />
-        </div>
-        <Row >
+          />}/>
+          </Col>
+        </Row>
+        <Row>
           <Col s={6}>
-            <div className={"my-pretty-chart-container"}>
-              <Chart
-                chartType="PieChart"
-                width="100%"
-                height="400px"
-                data={data}
-                options={options}
-                legendToggle
-              />
-            </div>
+          <Card children={<Chart
+            chartType="PieChart"
+            width="100%"
+            height="300px"
+            data={data}
+            options={options}
+            legendToggle
+          />}/>
           </Col>
           <Col s={6}>
-            <div className={"my-pretty-chart-container"}>
-              <Chart
-                chartType="PieChart"
-                width="100%"
-                height="400px"
-                data={revData}
-                options={revOptions}
-                legendToggle
-              />
-            </div>
+          <Card children={<h3>Today's Revenue</h3>,<h1>$176</h1>
+          }/>
           </Col>
         </Row>
       </div>

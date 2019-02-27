@@ -5,36 +5,30 @@ import {Link} from 'react-router-dom'
 
 import Logo from '../../../assets/img/logo.png'
 
-
 class NavigationBar extends React.Component {
   createNavBarItems = (userDetails) => {
-    let divStyle = {textAlign:'left'}
-
-    let imageStyle = {float:'left',
-                      marginRight:'10px'}
-
     if (userDetails.logged_in === false){
       return(
         //If you are not signed in
         <React.Fragment>
         <Navbar className="blue-grey nav-pad" fixed brand={
-         <div>
-           <img style={imageStyle} src={Logo} alt="Image" height="85px" />Drive Away
-         </div>} right>          
-         <NavItem href='/list-of-valets'>List of Valets</NavItem>
-          <NavItem href='/users/sign_in'>Sign In</NavItem>
-          <NavItem href='/registration'>Sign Up</NavItem>
-          </Navbar>
+        <div>
+          <img className="logo-style" src={Logo} alt="Image" height="85px" />Drive Away
+        </div>}
+        right>
+        <NavItem href='/list-of-valets'>List of Valets</NavItem>
+        <NavItem href='/users/sign_in'>Sign In</NavItem>
+        <NavItem href='/registration'>Sign Up</NavItem>
+        </Navbar>
         </React.Fragment>
       )
     //if the user is logged in and the is a valet
     }else if (userDetails.logged_in && userDetails.is_valet) {
       return(
         <React.Fragment>
-        {/*  */}
          <Navbar className="blue-grey nav-pad" fixed brand={
           <div>
-            <img style={imageStyle} src={Logo} alt="Image" height="85px" />Drive Away
+            <img className="logo-style" src={Logo} alt="Image" height="85px" />Drive Away
           </div>
          }
          right>
@@ -49,7 +43,7 @@ class NavigationBar extends React.Component {
       <React.Fragment>
       <Navbar className="blue-grey nav-pad" fixed brand={
        <div>
-         <img style={imageStyle} src={Logo} alt="Image" height="85px" />Drive Away
+         <img className="logo-style" src={Logo} alt="Image" height="85px" />Drive Away
        </div>
       }
       right>

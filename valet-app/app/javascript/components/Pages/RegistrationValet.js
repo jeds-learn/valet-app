@@ -2,8 +2,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import {BrowserRouter as Router, Route } from 'react-router-dom'
 import {Icon, Button, Col, Row, Input} from 'react-materialize'
-import DateTime from 'react-datetime';
-import moment from 'moment'
 
 //50 states in javascript file used for US state dropdown in form.
 import states from '../Elements/FiftyStates.js'
@@ -42,16 +40,6 @@ createArrayOfStates = (array) => {
    let newArray = array.map(obj => `${obj.name} (${obj.abbreviation})`)
    this.setState({states: newArray})
 }
-
-getOpeningTime = (date) => {
-    let {opening_time} = this.state
-    this.setState({opening_time:date})
-}
-
-getClosingTime = (date) => {
-    let {closing_time} = this.state
-    this.setState({closing_time:date})
-  }
 
 handleChange = (event) => {
   const { valetAttributes } = this.state

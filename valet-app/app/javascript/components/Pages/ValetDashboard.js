@@ -51,8 +51,16 @@ class ValetDashboard extends React.Component {
       headers: {"Content-Type": "application/json"},
     })
     let json = await response.json()
-    await this.setState({orders: json, loading: false})
+    let sortedOrderd = await this.sortOrders(json)
+    await this.setState({orders: sortedOrderd, loading: false})
     await this.getTodaysOrders()
+  }
+
+  sortOrders = async (arrayOfOrders) =>{
+    arrayOfOrders.sort(function(a,b){
+      return new Date(b.start_time) - new Date(a.start_time);
+    })
+    return arrayOfOrders.reverse()
   }
 
   captureOrderIdAndOpenModal = (event) => {

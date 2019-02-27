@@ -27,9 +27,8 @@ class User extends React.Component {
               <Route path="/user/list-of-orders/:order_id" exact component={OrderDetails}/>
               <Route path="/user/add-vehicle" exact component={AddVehicle}/>
               <Route path="/valet/valet-dashboard" exact component={ValetDashboard}/>
-              <Route path="/list-of-valets" exact component={ListOfValets}/>
+              <Route path="/list-of-valets" exact render={()=><ListOfValets loggedIn={true}/>}/>
               <Route path="/user/list-of-orders" exact component={ListOfOrders}/>
-
             </Switch>
           </Router>
        </div>

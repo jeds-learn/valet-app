@@ -53,6 +53,7 @@ class ListOfValets extends React.Component {
           </thead>
           <tbody>
           {this.state.valets.map((valet, index) => {
+            if (this.props.loggedIn){
             return(
               <tr key={index} id={valet.id} onClick={this.hello}>
               <td>{valet.company_name}</td>
@@ -63,9 +64,20 @@ class ListOfValets extends React.Component {
               <td><Link to={`/user/new-order/${valet.id}`}><Button waves='light'>Book</Button></Link></td>
               </tr>
             )
-          })}
-          </tbody>
-        </Table>
+          } else{
+              return(
+                <tr key={index} id={valet.id} onClick={this.hello}>
+                <td>{valet.company_name}</td>
+                <td>{valet.address}</td>
+                <td>{valet.city}</td>
+                <td>{valet.state}</td>
+                <td>${valet.cost_per_hour}</td>
+                </tr>
+              )
+            }
+        })}
+        </tbody>
+      </Table>
       </div>
       <div>
         <Map google={this.props.google}

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 skip_before_action :verify_authenticity_token
-before_action :authenticate_user!, except: :create
+before_action :authenticate_user!, except: [:create, :get_valet]
 
 
   def create

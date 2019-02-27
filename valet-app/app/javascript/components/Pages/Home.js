@@ -3,7 +3,6 @@ import PropTypes from "prop-types"
 import {BrowserRouter as Router, Route } from 'react-router-dom'
 import {Parallax, Col, Tabs, Tab, Row, Input} from 'react-materialize'
 
-
 //Images used for HomePage
 import Bridge from '../../../assets/img/bridge.png'
 import Marina from '../../../assets/img/marina.png'

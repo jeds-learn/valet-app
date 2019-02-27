@@ -165,7 +165,6 @@ pieChartData = () =>{
 
     return (
       <div className="container">
-        <h1>Valet Dashboard</h1>
         <div className="chips-collections-row">
         {this.createChips()}
         </div>

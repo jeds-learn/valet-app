@@ -1,3 +1,15 @@
+<nav>
+    <div style="font-size: 2.1rem;" class="nav-wrapper blue-grey nav-pad">
+        <a href="/"</a>
+        <img class="logo-style" src="/logo-public.png" alt="Image" height="85px">Drive Away</>
+        <ul class="right hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+        <li><a href="/registration">Sign Up</a></li>
+      </ul>
+      </div>
+  </nav>
+
+<div class="container">
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -24,3 +36,4 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-ro
 import {Row, Col, Table, Button, Input, Icon} from 'react-materialize'
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
-class ListOfValets extends React.Component {
+class ListOfValetsUnathenticated extends React.Component {
   state = {
     valets:[],
     showingInfoWindow: true,
@@ -60,7 +60,6 @@ class ListOfValets extends React.Component {
               <td>{valet.city}</td>
               <td>{valet.state}</td>
               <td>${valet.cost_per_hour}</td>
-              <td><Link to={`/user/new-order/${valet.id}`}><Button waves='light'>Book</Button></Link></td>
               </tr>
             )
           }
@@ -103,4 +102,4 @@ class ListOfValets extends React.Component {
 }
 export default GoogleApiWrapper({
 apiKey: 'AIzaSyCMQgVmwu-p2ewvYsQvoUDiWwXOYU6N8cI'
-})(ListOfValets);
+})(ListOfValetsUnathenticated);

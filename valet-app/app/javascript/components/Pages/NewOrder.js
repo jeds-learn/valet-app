@@ -40,7 +40,6 @@ getValet = (valetId) => {
       headers: {"Content-Type": "application/json"},
     })
     .then((response) => response.json())
-    //then set state of dvds to the json payload
     .then((json) => {
       this.setState({valetDetails: json})
     })
@@ -100,7 +99,6 @@ handleVehicleId = (event) => {
     this.setState({ vehicle_id:vehicle_id })
   }
 
-
 createOrder = (event) => {
   event.preventDefault()
   fetch('/orders.json', {
@@ -157,7 +155,7 @@ onSubmitOrder = (event) => {
           })}
           </Input>
           <Icon left>credit_card</Icon>
-          <Input readOnly s={5} type='select'  label='Select Credit Card' defaultValue='1'>
+          <Input readOnly s={5} type='select' label='Select Credit Card' defaultValue='1'>
             <option value='1'>Amex</option>
             <option value='2'>Mastercard</option>
           </Input>

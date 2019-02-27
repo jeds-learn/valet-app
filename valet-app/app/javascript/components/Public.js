@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 import NavigationBar from './Elements/NavigationBar'
-import ListOfValets from './Pages/ListOfValets'
+import ListOfValets from './Pages/ListOfValetsUnathenticated'
 import Registration from './Pages/Registration'
 import PageNotFound from './Pages/PageNotFound'
 import RegistrationUser from './Pages/RegistrationUser'
@@ -21,7 +21,7 @@ class Public extends React.Component {
         <Switch>
           <Route path="/" exact component={Home}/>
           <Route path="/test" exact component={Test}/>
-          <Route path="/list-of-valets" exact render={()=><ListOfValets loggedIn={false}/>}/>
+          <Route path="/list-of-valets" exact component={ListOfValets}/>}/>
           <Route path="/registration" exact component={Registration}/>
           <Route path="/registration/user" exact component={RegistrationUser}/>
           <Route path="/registration/valet" exact component={RegistrationValet}/>

@@ -14,16 +14,23 @@ class ListOfOrders extends React.Component {
 componentDidMount = () =>{
   this.getBookings()
 }
-getBookings = () => {
-  fetch('/orders.json')
-  .then((response) => response.json())
-  .then((json) => {
-    this.setState({myBookings: json})
-    console.log(this.state);
+getBookings = async () => {
+  try{
+    let bookings = await fetch('/orders.json')
+    let bookingsAsJson = await bookings.json()
+    let sortedBookings = await this.sortBookings(bookingsAsJson)
+    await this.setState({myBookings: sortedBookings})
+  }
+  catch(error){
+    console.log("Error", error);
+  }
+}
+
+sortBookings = async (arrayOfBookings) =>{
+  arrayOfBookings.sort(function(a,b){
+    return new Date(b.start_time) - new Date(a.start_time);
   })
-  .catch((e) =>{
-    console.log("Error", e);
-  })
+  return arrayOfBookings.reverse()
 }
 
   render () {

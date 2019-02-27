@@ -157,7 +157,7 @@ onSubmitOrder = (event) => {
           })}
           </Input>
           <Icon left>credit_card</Icon>
-          <Input s={5} type='select'  label='Select Credit Card' defaultValue='1'>
+          <Input readOnly s={5} type='select'  label='Select Credit Card' defaultValue='1'>
             <option value='1'>Amex</option>
             <option value='2'>Mastercard</option>
           </Input>

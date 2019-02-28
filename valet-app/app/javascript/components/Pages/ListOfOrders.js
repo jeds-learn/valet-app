@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import {Table, Icon, Button, Col, Row, Input, Footer} from 'react-materialize'
 import moment from 'moment'
 
+import OrderDetailsCard from '../Elements/OrderDetailsCard'
 
 
 class ListOfOrders extends React.Component {

@@ -7,7 +7,6 @@ import DateTime from 'react-datetime';
 
 import CarCard from '../images/card-order-details.jpg';
 
-
 class OrderDetails extends React.Component {
   state={
     loading: 'true',
@@ -166,24 +165,36 @@ updateBookingTime = () => {
 
     return (
       <div className="container">
-      <h4>Booking Details</h4>
-      <Col s={12}>
-        <Card horizontal header={<CardTitle image={CarCard}></CardTitle>}>
-            <p>{booking.valet_company_name}</p>
-            <p>{booking.valet_address}. {booking.valet_city}, {booking.valet_state} {booking.valet_zip} </p>
-            <hr></hr>
-            <p>Order ID: {booking.id}</p>
-            <p>Length of Stay: {booking.length_of_stay} hours</p>
-            <p>Drop Off Time: {this.convertTime(booking.start_time)}</p>
-            <p>Pick Up Time: {this.convertTime(booking.end_time)}</p>
-            <hr></hr>
-            <p>Valet Fee: ${booking.total_price} </p>
-            <p>Tip: ${booking.tip}</p>
-            <p>Total: ${this.calculateTotal(booking.total_price, booking.tip)}</p>
-            <br></br>
-            <p>Order Status: {booking.order_status}</p>
-          </Card>
-      </Col>
+        <h3>Booking Details</h3><div className="chip teal lighten-3">Order Status - {booking.order_status}</div>
+        <div className="row">
+          <div className="col s12 m6 l4 center-align">
+            <div className="card">
+              <div className="card-content">
+              <i className="material-icons large blue-grey-text">alarm</i>
+              <h5>{booking.length_of_stay} hours</h5>
+              <h6>from {this.convertTime(booking.start_time)}</h6>
+              </div>
+            </div>
+          </div>
+          <div className="col s12 m6 l4 center-align">
+            <div className="card">
+              <div className="card-content">
+              <i className="material-icons large blue-grey-text">add_location</i>
+              <h5>{booking.valet_company_name}</h5>
+              <h6>{booking.valet_address}. {booking.valet_city},{booking.valet_zip}</h6>
+              </div>
+            </div>
+          </div>
+          <div className="col s12 m6 l4 center-align">
+            <div className="card">
+              <div className="card-content">
+              <i className="material-icons large blue-grey-text">attach_money</i>
+              <h5>Total ${this.calculateTotal(booking.total_price, booking.tip)}</h5>
+              <h6>(Valet Fee: ${booking.total_price} + Tip: ${booking.tip})</h6>
+              </div>
+            </div>
+          </div>
+        </div>
       <Row>
         <Col s={2} offset='s1'><Button large onClick={() => {$('#times').modal('open')}} tooltip="Edit Times" floating icon='schedule' className='deep-purple lighten-2 center-align'/></Col>
         <Col s={2} offset='s1'><Button large onClick={() => {$('#tip').modal('open')}} tooltip="Add Tip" floating icon='attach_money' className='blue lighten-2'/></Col>

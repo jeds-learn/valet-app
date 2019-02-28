@@ -80,15 +80,23 @@ validateAndsubmitValetToDb = async (event) => {
     event.preventDefault()
     await this.schema.validate(this.state.valetAttributes)
     const valetAttributes = await this.getLongandLat()
-    const result = await fetch('/users/create.json', {
+    const httpResponse = await fetch('/users/create.json', {
       method:"POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({user:valetAttributes})
     })
-    window.location='/valet/valet-dashboard'
-  } catch(error) {
-    window.Materialize.toast(error.errors, 2000, 'red rounded')
+    if (httpResponse.status === 422) {
+      this.displayToasterError("Email Address is already registered")
+    }else {
+    window.location='/'
+    }
+  }catch(error) {
+    this.displayToasterError(error.errors)
   }
+}
+
+displayToasterError = (errorCode) => {
+    return window.Materialize.toast(errorCode, 2000, 'red rounded')
 }
 
   render () {
@@ -100,7 +108,7 @@ validateAndsubmitValetToDb = async (event) => {
               <Input s={12} onChange={this.handleChange} name="company_name" label="Company Name" />
               <Input s={12} onChange={this.handleChange} name="address" label="Address" />
               <Input s={4} onChange={this.handleChange} name="city" label="City" />
-              <Input s={4} type='select' onChange={this.handleChange} name="state" label="States">
+              <Input s={4} type='select' onChange={this.handleChange} name="state" label="State">
                   {this.state.states.map((state, index) => {
                     return(<option key={index} value={state}>{state}</option>
                     )

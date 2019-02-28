@@ -45,7 +45,6 @@ class ValetDashboard extends React.Component {
   }
 
   getOrders = async () => {
-    event.preventDefault()
     let response = await fetch('/valet/orders.json', {
       method:"GET",
       headers: {"Content-Type": "application/json"},
@@ -70,23 +69,40 @@ class ValetDashboard extends React.Component {
   }
 
   updateOrderStatus = async (event) => {
-    event.preventDefault()
-    let status = event.currentTarget.name
-    let {lastButtonClicked} = this.state
-    let url = `/orders/${lastButtonClicked}.json`
-    fetch(url, {
-      method:"PUT",
-      body: JSON.stringify({order:{order_status: status}}),
-      headers: {"Content-Type": "application/json"},
-    })
-    .then(alert('The order has been updated'))
-      //when promise is fufilled parse to json
-      .then(this.getOrders())
-      //then set state of dvds to the json payload
-      .catch((e)=>{
-        console.log("Error", e)
+    try{
+      event.preventDefault()
+      let status = await event.currentTarget.name
+      let {lastButtonClicked} = this.state
+      let url = `/orders/${lastButtonClicked}.json`
+      let response = await fetch(url, { method:"PUT",
+                                        body: JSON.stringify({order:{order_status: status}}),
+                                        headers: {"Content-Type": "application/json"},
       })
+      await alert('The order has been updated')
+      await this.getOrders()
+      if (status === 'Ready To Drive Away'){
+        this.pushNotify()
+      }
+    }catch(e){
+      console.log("Error", e)
+    }
   }
+
+  pushNotify = () => {
+    const pushURL = 'https://api.pushover.net/1/messages.json'
+    fetch(pushURL, {method:"POST",
+                    body:JSON.stringify({'user': 'upf3xdzsbpn7g7svnu6nopktykhhpo',
+                                          'token' : 'awm8mzfupdmv7mifyy79kh2ozroy2w',
+                                          'message': 'Car Ready to Collect'
+                                        }),
+                    headers: {"Content-Type": "application/json"},
+    })
+  }
+
+
+
+
+
 
   isToday = (orderObj) => {
     let orderDateAsMoment = moment(orderObj.start_time)
@@ -154,7 +170,7 @@ pieChartData = () =>{
 }
 
   render () {
-    console.log(this.state);
+
     if (this.state.loading === true) {
       return <Row>
               <Col s={12}>

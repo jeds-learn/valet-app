@@ -181,7 +181,7 @@ updateBookingTime = () => {
               <div className="card-content">
               <i className="material-icons large blue-grey-text">add_location</i>
               <h5>{booking.valet_company_name}</h5>
-              <h6>{booking.valet_address}. {booking.valet_city},{booking.valet_zip}</h6>
+              <h6>{booking.valet_address}, {booking.valet_zip}</h6>
               </div>
             </div>
           </div>

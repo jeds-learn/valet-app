@@ -25,20 +25,26 @@ handleChangeCustomer = (event) => {
   this.setState({ customerAttributes:customerAttributes })
 }
 
-validateAndsubmitCustomerToDb = (event) => {
+validateAndsubmitCustomerToDb = async (event) => {
   event.preventDefault()
-  this.schema.validate(this.state.customerAttributes)
-  .then(function(payload) {
-    fetch('/users/create.json', {
-      method:"POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({user:payload})
-    }).then(() => window.location='/user/add-vehicle')
-  })
-  .catch(function(err) {
-    window.Materialize.toast(err.errors, 2000, 'red rounded')
-    return false
-  });
+  try{
+    let payload = await this.schema.validate(this.state.customerAttributes)
+    let httpResponse = await fetch('/users/create.json', { method:"POST",
+                                        headers: {"Content-Type": "application/json"},
+                                        body: JSON.stringify({user:payload})
+    })
+    if (httpResponse.status === 422) {
+      this.displayToasterError("Email Address is already registered")
+    }else {
+      window.location='/user/add-vehicle'
+    }
+  }catch(error) {
+    this.displayToasterError(error.errors)
+  }
+}
+
+displayToasterError = (errorCode) => {
+    return window.Materialize.toast(errorCode, 2000, 'red rounded')
 }
 
 schema = yup.object().shape({

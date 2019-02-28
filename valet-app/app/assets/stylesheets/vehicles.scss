@@ -6,6 +6,17 @@
   height: 50px
 }
 
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-flex{
+  padding: 10px;
+}
+
  .register-btn{
    margin-right: 5px;
 

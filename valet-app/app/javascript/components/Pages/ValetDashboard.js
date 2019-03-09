@@ -99,11 +99,6 @@ class ValetDashboard extends React.Component {
     })
   }
 
-
-
-
-
-
   isToday = (orderObj) => {
     let orderDateAsMoment = moment(orderObj.start_time)
     if (orderDateAsMoment.isSame(new Date(), "day")){
